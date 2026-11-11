@@ -14,9 +14,6 @@
                     colors: {
                         obsidian: '#050508',
                         cardbg: '#0f0f17',
-                        neoncyan: '#00f0ff',
-                        neonpink: '#ff007f',
-                        neongreen: '#00ff66'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -27,7 +24,7 @@
             }
         }
     </script>
-    <!-- Google Fonts: Inter, JetBrains Mono, & Caveat (for handwritten quotes) -->
+    <!-- Google Fonts: Inter, JetBrains Mono, & Caveat for handwritten accents -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,15 +32,16 @@
         .font-hand { font-family: 'Caveat', cursive; }
     </style>
 </head>
-<body class="bg-obsidian text-gray-200 font-sans selection:bg-neoncyan selection:text-obsidian min-h-screen">
+<body class="bg-obsidian text-gray-200 font-sans selection:bg-white selection:text-obsidian min-h-screen">
 
     <!-- 🌐 Top Navigation Bar -->
-    <header class="border-b border-gray-800 bg-obsidian/80 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-gray-900 bg-obsidian sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
-            <a href="#" class="text-xl font-black tracking-widest uppercase text-white flex items-center space-x-1">
-                <span>GAVI.</span><span class="text-neoncyan text-xs">★</span>
-            </a>
+            <div class="space-y-0.5">
+                <a href="#" class="text-lg font-black tracking-widest uppercase text-white block">GAVI</a>
+                <span class="text-[9px] text-gray-400 font-mono tracking-tighter block">BE YOU. ALWAYS.</span>
+            </div>
 
             <!-- Nav Links -->
             <nav class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-400">
@@ -57,209 +55,201 @@
             </nav>
 
             <!-- Icons -->
-            <div class="flex items-center space-x-5 text-gray-300">
-                <button class="hover:text-neoncyan transition"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <button class="hover:text-neoncyan transition"><i class="fa-regular fa-heart"></i></button>
-                <button class="hover:text-neoncyan transition relative flex items-center space-x-1">
+            <div class="flex items-center space-x-5 text-gray-300 text-sm">
+                <button class="hover:text-white transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="hover:text-white transition"><i class="fa-regular fa-user"></i></button>
+                <button class="hover:text-white transition"><i class="fa-regular fa-heart"></i></button>
+                <button class="hover:text-white transition flex items-center space-x-1.5 text-xs font-mono">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span class="text-xs font-bold font-mono">CART (2)</span>
+                    <span>CART (2)</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- 🌌 HERO SECTION (As seen in design reference) -->
-    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+    <!-- 🌌 HERO SECTION -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
         
-        <!-- Background Handwritten Vibe Quote (Left Side) -->
-        <div class="absolute top-10 left-4 text-gray-500 font-hand text-xl md:text-2xl -rotate-6 pointer-events-none hidden lg:block">
-            the world is loud.<br>be yourself louder. 🤍
+        <!-- Top Right Handwritten Quote -->
+        <div class="absolute top-4 right-6 text-gray-400 font-hand text-xl text-right z-20 hidden lg:block">
+            Different. minds. Style.<br>Some energy. <span class="text-white">★ 🤍</span>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             <!-- Left Text Column -->
-            <div class="lg:col-span-7 space-y-8 z-10">
+            <div class="lg:col-span-6 space-y-8 z-10">
                 <div class="space-y-4">
-                    <h2 class="text-6xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none text-white">
-                        BE YOU.<br>NOT THEM.
-                    </h2>
-                    <p class="text-gray-400 text-sm md:text-base font-mono uppercase tracking-widest">
-                        CLOTHES. TATTOOS. CAPS. ACCESSORIES.<br>ALL YOUR VIBE. ALL YOU.
+                    <h1 class="text-5xl sm:text-7xl font-black uppercase tracking-tighter leading-none text-white">
+                        WEAR WHAT<br>FEELS LIKE YOU
+                    </h1>
+                    <p class="text-gray-400 text-xs sm:text-sm font-mono uppercase tracking-widest">
+                        CLOTHES. TATTOOS. CAPS. ACCESSORIES. ALL IN ONE PLACE.
                     </p>
                 </div>
 
                 <!-- Handwritten Subtext -->
-                <div class="text-neoncyan font-hand text-2xl flex items-center space-x-2">
-                    <span>made for the ones who don't fit in</span>
-                    <span>🤍</span>
+                <div class="text-gray-300 font-hand text-xl">
+                    made for the generation that doesn't follow trends. it creates them.
                 </div>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#shop" class="bg-obsidian border border-gray-700 hover:border-neoncyan text-white text-center px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider transition flex items-center justify-center space-x-3 group">
+                <div class="flex items-center space-x-6 pt-2">
+                    <a href="#shop" class="bg-white text-obsidian px-8 py-4 rounded-full text-xs font-extrabold uppercase tracking-widest hover:bg-gray-200 transition flex items-center space-x-2">
                         <span>SHOP NOW</span>
-                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
                     </a>
-                    <a href="#collections" class="text-gray-400 hover:text-white text-center text-xs font-bold uppercase tracking-widest px-4 py-4 transition">
-                        EXPLORE COLLECTIONS →
+                    <a href="#collections" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition">
+                        EXPLORE COLLECTIONS
                     </a>
                 </div>
             </div>
 
-            <!-- Right Hero Image Column (Model with Cap & Text) -->
-            <div class="lg:col-span-5 relative">
-                <div class="absolute -top-6 right-10 text-gray-400 font-hand text-xl rotate-3 z-20">
-                    CREATE YOURSELF ✨
-                </div>
-                <!-- Background Handwritten Quote (Right Side) -->
-                <div class="absolute -bottom-6 right-4 text-gray-500 font-hand text-xl rotate-6 pointer-events-none z-20 hidden sm:block">
-                    good things take time 🤍
-                </div>
-                
-                <div class="relative h-[420px] rounded-3xl overflow-hidden border border-gray-800 bg-cardbg shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Gavi Drifts Model" class="w-full h-full object-cover opacity-80">
+            <!-- Right Hero Image Column (Model Portrait) -->
+            <div class="lg:col-span-6 relative">
+                <div class="relative h-[440px] rounded-3xl overflow-hidden border border-gray-800 bg-cardbg shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80" alt="Gavi Drifts Model" class="w-full h-full object-cover opacity-85">
                     <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
                     
-                    <!-- Text Overlay on Model Jacket -->
-                    <div class="absolute bottom-6 left-6 right-6 text-center">
-                        <p class="text-white font-black uppercase text-lg tracking-widest drop-shadow-md">DISCIPLINE TODAY</p>
-                        <p class="text-white font-black uppercase text-xl tracking-wider drop-shadow-md text-neoncyan">FREEDOM TOMORROW</p>
-                        <div class="text-white font-hand text-lg mt-1">★</div>
+                    <!-- Branding on Jacket -->
+                    <div class="absolute bottom-8 right-8 text-right">
+                        <span class="text-white font-black uppercase text-2xl tracking-widest block">GAVI</span>
+                        <div class="text-white font-hand text-xl mt-1">★</div>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- 💎 Brand Value Badges Row -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-gray-800/80 text-center">
+        <!-- 💎 Value Badges Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-gray-900 text-center">
             <div class="space-y-1">
-                <i class="fa-solid fa-gem text-neoncyan text-lg mb-2"></i>
+                <div class="text-white mb-2"><i class="fa-regular fa-star"></i></div>
                 <h4 class="text-xs font-bold uppercase tracking-wider text-white">ORIGINAL DESIGN</h4>
-                <p class="text-[11px] text-gray-400">NOT BASIC. NOT BORING.</p>
+                <p class="text-[11px] text-gray-500 font-mono">NOT BASIC. NOT BORING.</p>
             </div>
             <div class="space-y-1">
-                <i class="fa-solid fa-shield-halved text-neoncyan text-lg mb-2"></i>
+                <div class="text-white mb-2"><i class="fa-regular fa-gem"></i></div>
                 <h4 class="text-xs font-bold uppercase tracking-wider text-white">QUALITY MATERIALS</h4>
-                <p class="text-[11px] text-gray-400">MADE TO LAST</p>
+                <p class="text-[11px] text-gray-500 font-mono">MADE TO LAST</p>
             </div>
             <div class="space-y-1">
-                <i class="fa-solid fa-bolt text-neonpink text-lg mb-2"></i>
+                <div class="text-white mb-2"><i class="fa-solid fa-bolt"></i></div>
                 <h4 class="text-xs font-bold uppercase tracking-wider text-white">MADE FOR YOU</h4>
-                <p class="text-[11px] text-gray-400">REAL PEOPLE. REAL STYLE.</p>
+                <p class="text-[11px] text-gray-500 font-mono">REAL PEOPLE. REAL STYLE.</p>
             </div>
             <div class="space-y-1">
-                <i class="fa-solid fa-globe text-neoncyan text-lg mb-2"></i>
+                <div class="text-white mb-2"><i class="fa-solid fa-globe"></i></div>
                 <h4 class="text-xs font-bold uppercase tracking-wider text-white">WORLDWIDE SHIPPING</h4>
-                <p class="text-[11px] text-gray-400">ANYWHERE. EVERYWHERE.</p>
+                <p class="text-[11px] text-gray-500 font-mono">ANYWHERE. EVERYWHERE.</p>
             </div>
         </div>
     </section>
 
-    <!-- 📦 CATEGORIES & FEATURED GRID SECTION -->
+    <!-- 📦 CATEGORIES & TATTOO EDITORIAL SECTION -->
     <section id="shop" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between">
-            <div>
-                <span class="text-neoncyan text-xs font-mono uppercase tracking-widest">// CATALOG_DIRECT_ACCESS</span>
-                <h3 class="text-3xl font-black uppercase tracking-tight text-white mt-1">Everything you need. One place.</h3>
-            </div>
+        
+        <div class="mb-10">
+            <span class="text-xs font-mono uppercase tracking-widest text-gray-500">CATEGORIES</span>
+            <h3 class="text-3xl font-black uppercase tracking-tight text-white mt-1">Everything you need. One place.</h3>
         </div>
 
-        <!-- 4-Column Category Cards -->
+        <!-- 4-Column Category Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <!-- Clothes -->
-            <div id="clothes" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neoncyan transition">
-                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+            <div id="clothes" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-700 transition">
+                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
                     <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Clothes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
                     <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
                 </div>
-                <div class="p-6 flex justify-between items-center">
-                    <div>
-                        <h4 class="font-extrabold uppercase tracking-wide text-white">CLOTHES</h4>
-                        <p class="text-gray-400 text-xs mt-0.5">WEAR YOUR MINDSET →</p>
-                    </div>
+                <div class="p-5 flex justify-between items-center">
+                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">CLOTHES</h4>
                 </div>
             </div>
 
             <!-- Tattoos -->
-            <div id="tattoos" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neonpink transition">
-                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+            <div id="tattoos" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-700 transition">
+                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
                     <img src="https://images.unsplash.com/photo-1598371839606-9185d75e0a84?auto=format&fit=crop&w=600&q=80" alt="Tattoos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
-                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">😊</span>
+                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
                 </div>
-                <div class="p-6 flex justify-between items-center">
-                    <div>
-                        <h4 class="font-extrabold uppercase tracking-wide text-white">TATTOOS</h4>
-                        <p class="text-gray-400 text-xs mt-0.5">INK YOUR STORY →</p>
-                    </div>
+                <div class="p-5 flex justify-between items-center">
+                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">TATTOOS</h4>
                 </div>
             </div>
 
             <!-- Caps -->
-            <div id="caps" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neongreen transition">
-                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+            <div id="caps" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-700 transition">
+                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
                     <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" alt="Caps" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
-                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
+                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">GAVI</span>
                 </div>
-                <div class="p-6 flex justify-between items-center">
-                    <div>
-                        <h4 class="font-extrabold uppercase tracking-wide text-white">CAPS</h4>
-                        <p class="text-gray-400 text-xs mt-0.5">TOP OFF YOUR VIBE →</p>
-                    </div>
+                <div class="p-5 flex justify-between items-center">
+                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">CAPS</h4>
                 </div>
             </div>
 
             <!-- Accessories -->
-            <div id="accessories" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neoncyan transition">
-                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+            <div id="accessories" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-700 transition">
+                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
                     <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80" alt="Accessories" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
-                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">🤍</span>
+                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
                 </div>
-                <div class="p-6 flex justify-between items-center">
-                    <div>
-                        <h4 class="font-extrabold uppercase tracking-wide text-white">ACCESSORIES</h4>
-                        <p class="text-gray-400 text-xs mt-0.5">DETAILS MATTER →</p>
-                    </div>
+                <div class="p-5 flex justify-between items-center">
+                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">ACCESSORIES</h4>
                 </div>
             </div>
 
         </div>
+
+        <!-- ✍️ TATTOOS ARE... FEATURE BANNER (Matching Reference) -->
+        <div class="mt-12 bg-cardbg border border-gray-900 rounded-3xl p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden">
+            <div class="lg:col-span-6 space-y-4">
+                <h3 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+                    TATTOOS ARE.<br>ARE STYLE IS<br>FOREVER.
+                </h3>
+                <div class="text-gray-400 font-hand text-2xl flex items-center space-x-2 pt-2">
+                    <span>ink your story</span>
+                    <span>🤍</span>
+                </div>
+            </div>
+            <div class="lg:col-span-6 relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-gray-800">
+                <img src="https://images.unsplash.com/photo-1598371839606-9185d75e0a84?auto=format&fit=crop&w=900&q=80" alt="Tattoo Art" class="w-full h-full object-cover opacity-80">
+            </div>
+        </div>
+
     </section>
 
-    <!-- ⚡ EDITORIAL FEATURE BANNERS -->
+    <!-- ⚡ MANIFESTO & DROP 07 SECTION -->
     <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
         
-        <!-- Feature Box 1: Not Just a Brand -->
-        <div class="bg-cardbg border border-gray-800 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
+        <!-- Box 1: Manifesto -->
+        <div class="bg-cardbg border border-gray-900 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
             <div class="absolute top-6 right-6 text-white font-hand text-2xl">★</div>
             <div class="space-y-4 relative z-10">
-                <span class="text-neoncyan text-xs font-mono uppercase tracking-widest">// MANIFESTO</span>
                 <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">NOT JUST A BRAND.<br>A WAY OF LIFE.</h3>
-                <p class="text-gray-400 text-sm max-w-md">FOR THE ONES WHO THINK DIFFERENT. LIVE DIFFERENT, ARE DIFFERENT.</p>
+                <p class="text-gray-400 text-xs font-mono tracking-wider">FOR THE ONES WHO THINK DIFFERENT. LIVE DIFFERENT, ARE DIFFERENT.</p>
             </div>
-            <div class="mt-8 relative z-10">
-                <div class="h-64 rounded-2xl overflow-hidden border border-gray-800">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Editorial" class="w-full h-full object-cover opacity-80">
-                </div>
+            <div class="mt-8 relative z-10 h-64 rounded-2xl overflow-hidden border border-gray-800">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Manifesto" class="w-full h-full object-cover opacity-80">
             </div>
         </div>
 
-        <!-- Feature Box 2: Drop 07 -->
-        <div id="collections" class="bg-cardbg border border-gray-800 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
+        <!-- Box 2: Drop 07 -->
+        <div id="collections" class="bg-cardbg border border-gray-900 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
             <div class="absolute top-6 right-6 text-white font-hand text-2xl">🤍</div>
-            <div class="space-y-4 relative z-10">
-                <span class="text-neonpink text-xs font-mono uppercase tracking-widest">// NEW DROP</span>
+            <div class="space-y-2 relative z-10">
+                <span class="text-xs font-mono uppercase tracking-widest text-gray-500">NEW DROP</span>
                 <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">DROP 07</h3>
-                <p class="text-gray-400 text-sm font-mono">OUT NOW // limited. exclusive. yours.</p>
+                <p class="text-gray-400 text-xs font-mono">OUT NOW // limited. exclusive. yours.</p>
             </div>
             <div class="mt-8 grid grid-cols-2 gap-4 relative z-10">
-                <div class="h-56 rounded-2xl overflow-hidden border border-gray-800 bg-gray-900 flex items-center justify-center">
-                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80" alt="Cap Drop" class="w-full h-full object-cover opacity-80">
+                <div class="h-56 rounded-2xl overflow-hidden border border-gray-800 bg-black flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80" alt="Drop Cap" class="w-full h-full object-cover opacity-80">
                 </div>
-                <div class="h-56 rounded-2xl overflow-hidden border border-gray-800 bg-gray-900 flex items-center justify-center">
-                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Tee Drop" class="w-full h-full object-cover opacity-80">
+                <div class="h-56 rounded-2xl overflow-hidden border border-gray-800 bg-black flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Drop Tee" class="w-full h-full object-cover opacity-80">
                 </div>
             </div>
         </div>
@@ -267,34 +257,32 @@
     </section>
 
     <!-- 🌌 BOTTOM QUOTE BANNER -->
-    <section class="py-20 text-center relative overflow-hidden border-t border-b border-gray-800/80 my-12 bg-cardbg/50">
+    <section class="py-20 text-center relative overflow-hidden border-t border-b border-gray-900 my-12 bg-cardbg/30">
         <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
             <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-white">
-                WE ARE NOT A TREND.<br>WE ARE A GENERATION.
+                BE YOU. ALWAYS.
             </h2>
-            <div class="text-neoncyan font-hand text-2xl">
-                different together 🤍
+            <div class="text-gray-400 font-hand text-2xl">
+                different together <span class="text-white">★</span>
             </div>
         </div>
     </section>
 
     <!-- 📄 FOOTER -->
-    <footer id="about" class="border-t border-gray-800 bg-obsidian py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer id="about" class="border-t border-gray-900 bg-obsidian py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 text-xs">
             <!-- Col 1 -->
-            <div class="space-y-4">
-                <a href="#" class="text-xl font-black tracking-widest uppercase text-white flex items-center space-x-1">
-                    <span>GAVI.</span><span class="text-neoncyan text-xs">★</span>
-                </a>
-                <p class="text-gray-400 text-xs font-mono">WEAR WHAT FEELS LIKE YOU.</p>
-                <p class="text-gray-500 text-xs">© 2026 GAVI DRIFTS. ALL RIGHTS RESERVED.</p>
+            <div class="space-y-3">
+                <span class="text-sm font-black tracking-widest uppercase text-white block">GAVI</span>
+                <p class="text-gray-500 font-mono">BE YOU. ALWAYS.</p>
+                <p class="text-gray-600">GAVI © 2026 ALL RIGHTS RESERVED</p>
             </div>
             <!-- Col 2 -->
             <div class="space-y-3">
-                <h5 class="text-xs font-bold uppercase tracking-wider text-white font-mono">// SHOP</h5>
-                <ul class="space-y-2 text-xs text-gray-400">
+                <h5 class="font-bold uppercase tracking-wider text-white font-mono">SHOP</h5>
+                <ul class="space-y-2 text-gray-400">
                     <li><a href="#clothes" class="hover:text-white transition">Clothes</a></li>
-                    <li><a href="#tattoos" class="hover:text-white transition">Tattoos</a></li>
+                    <li><a href="#clothes" class="hover:text-white transition">Tattoos</a></li>
                     <li><a href="#caps" class="hover:text-white transition">Caps</a></li>
                     <li><a href="#accessories" class="hover:text-white transition">Accessories</a></li>
                     <li><a href="#collections" class="hover:text-white transition">Collections</a></li>
@@ -302,8 +290,8 @@
             </div>
             <!-- Col 3 -->
             <div class="space-y-3">
-                <h5 class="text-xs font-bold uppercase tracking-wider text-white font-mono">// COMPANY</h5>
-                <ul class="space-y-2 text-xs text-gray-400">
+                <h5 class="font-bold uppercase tracking-wider text-white font-mono">COMPANY</h5>
+                <ul class="space-y-2 text-gray-400">
                     <li><a href="#" class="hover:text-white transition">About</a></li>
                     <li><a href="#" class="hover:text-white transition">Contact</a></li>
                     <li><a href="#" class="hover:text-white transition">FAQ</a></li>
@@ -313,8 +301,8 @@
             </div>
             <!-- Col 4 -->
             <div class="space-y-3">
-                <h5 class="text-xs font-bold uppercase tracking-wider text-white font-mono">// FOLLOW US</h5>
-                <ul class="space-y-2 text-xs text-gray-400">
+                <h5 class="font-bold uppercase tracking-wider text-white font-mono">FOLLOW US</h5>
+                <ul class="space-y-2 text-gray-400">
                     <li><a href="#" class="hover:text-white transition">Instagram</a></li>
                     <li><a href="#" class="hover:text-white transition">TikTok</a></li>
                     <li><a href="#" class="hover:text-white transition">Pinterest</a></li>
@@ -322,7 +310,7 @@
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-gray-900 flex justify-between items-center text-[11px] text-gray-500 font-mono uppercase tracking-widest">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-6 border-t border-gray-900/80 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-500 font-mono uppercase tracking-widest gap-4">
             <span>DISCIPLINE • STYLE • IDENTITY</span>
             <span>MADE FOR THE GENERATION THAT DOESN'T FIT IN. IT STANDS OUT. 🤍</span>
         </div>
