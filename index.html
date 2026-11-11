@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAVI DRIFTS // Cyberpunk Streetwear</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#050508',
+                        cardbg: '#0f0f17',
+                        neoncyan: '#00f0ff',
+                        neonpink: '#ff007f',
+                        neongreen: '#00ff66'
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        }
+                    },
+                    animation: {
+                        marquee: 'marquee 25s linear infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-obsidian text-gray-100 font-sans antialiased selection:bg-neoncyan selection:text-obsidian min-h-screen">
+
+    <!-- ⚡ Top Neon Marquee Ticker -->
+    <div class="bg-neoncyan text-obsidian font-black text-xs uppercase tracking-widest py-2 overflow-hidden whitespace-nowrap">
+        <div class="inline-block animate-marquee">
+            ⚡ HOLIDAY DROP LIVE // CHRISTMAS x NEW YEAR EDIT // LIMITED RUN SOURCED NATIONWIDE // FREE SHIPPING OVER ₹1499 ⚡ &nbsp;&nbsp;&nbsp;&nbsp; 
+            ⚡ HOLIDAY DROP LIVE // CHRISTMAS x NEW YEAR EDIT // LIMITED RUN SOURCED NATIONWIDE // FREE SHIPPING OVER ₹1499 ⚡
+        </div>
+    </div>
+
+    <!-- 🌐 Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-obsidian/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="text-2xl font-black tracking-tighter uppercase text-white flex items-center space-x-2">
+                <span class="text-neoncyan">GAVI</span> <span class="text-neonpink">//</span> DRIFTS
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
+                <a href="#new-sale" class="hover:text-neoncyan transition">New & Sale</a>
+                <a href="#old-monk" class="hover:text-neoncyan transition">Old Monk</a>
+                <a href="#casual" class="hover:text-neoncyan transition">Casual Wears</a>
+                <a href="#trending" class="hover:text-neoncyan transition">Trending</a>
+            </nav>
+
+            <!-- Actions / Cart -->
+            <div class="flex items-center space-x-4">
+                <button class="bg-cardbg border border-gray-800 hover:border-neoncyan px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider flex items-center space-x-2 transition">
+                    <i class="fa-solid fa-cart-shopping text-neoncyan"></i>
+                    <span>Cart (0)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🌌 Hero Section: Christmas & New Year Gen-Z Drop -->
+    <section class="relative overflow-hidden py-24 lg:py-32 border-b border-gray-800">
+        <!-- Background Glow Effects -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neoncyan/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-neonpink/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block bg-cardbg border border-neonpink/50 text-neonpink text-xs font-mono uppercase px-4 py-1.5 rounded-full mb-6 animate-pulse">
+                🎄 WINTER 2026 // SEASONAL DROP
+            </span>
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-none">
+                WEAR THE <span class="text-transparent bg-clip-text bg-gradient-to-r from-neoncyan to-neonpink">VIBE.</span><br>OWN THE NIGHT.
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base font-medium mb-10 tracking-wide">
+                Engineered for the underground. Explore our exclusive Christmas crimson layers, New Year metallic techwear, and signature Old Monk street style fits.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#new-sale" class="w-full sm:w-auto bg-neoncyan text-obsidian font-extrabold uppercase tracking-wider px-8 py-4 rounded-full text-xs hover:bg-white transition shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                    Explore Holiday Drops
+                </a>
+                <a href="#old-monk" class="w-full sm:w-auto bg-cardbg border border-gray-700 text-white font-extrabold uppercase tracking-wider px-8 py-4 rounded-full text-xs hover:border-neonpink transition">
+                    View Old Monk Collection
+                </a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
