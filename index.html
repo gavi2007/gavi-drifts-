@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAVI DRIFTS // Cyberpunk Streetwear</title>
+    <title>GAVI DRIFTS // Wear What Feels Like You</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,216 +12,319 @@
             theme: {
                 extend: {
                     colors: {
-                        obsidian: '#050508', // Deep Dark Background
-                        neoncyan: '#00f0ff', // Electric Cyan
-                        neonpink: '#ff007f', // Cyber Pink
-                        cardbg: '#0f0f17'  // Dark Card/Module BG
+                        obsidian: '#050508',
+                        cardbg: '#0f0f17',
+                        neoncyan: '#00f0ff',
+                        neonpink: '#ff007f',
+                        neongreen: '#00ff66'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
+                        mono: ['JetBrains Mono', 'monospace'],
+                        handwriting: ['Caveat', 'cursive']
                     }
                 }
             }
         }
     </script>
+    <!-- Google Fonts: Inter, JetBrains Mono, & Caveat (for handwritten quotes) -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        .text-shadow-neon { text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        .font-hand { font-family: 'Caveat', cursive; }
     </style>
 </head>
 <body class="bg-obsidian text-gray-200 font-sans selection:bg-neoncyan selection:text-obsidian min-h-screen">
 
-    <!-- 🌐 Header -->
-    <header class="border-b border-gray-800">
+    <!-- 🌐 Top Navigation Bar -->
+    <header class="border-b border-gray-800 bg-obsidian/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <div class="w-10 h-10 rounded-full bg-cardbg border border-neoncyan flex items-center justify-center text-neoncyan text-xl font-black">G</div>
-                <div>
-                    <h1 class="text-sm font-bold text-white uppercase tracking-wider">Gavi Gaikwad</h1>
-                    <p class="text-xs text-gray-400"><span class="relative flex h-2 w-2 inline-block mr-1"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neongreen opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-neongreen"></span></span>Available for contracts</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button class="text-gray-400 hover:text-neoncyan"><i class="far fa-heart"></i></button>
-                <button class="text-gray-400 hover:text-neoncyan"><i class="far fa-bookmark"></i></button>
-                <button class="bg-neoncyan text-obsidian px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider hover:bg-white transition shadow-shadow-neon">Get in touch</button>
+            <!-- Brand Logo -->
+            <a href="#" class="text-xl font-black tracking-widest uppercase text-white flex items-center space-x-1">
+                <span>GAVI.</span><span class="text-neoncyan text-xs">★</span>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-400">
+                <a href="#shop" class="hover:text-white transition">Shop</a>
+                <a href="#clothes" class="hover:text-white transition">Clothes</a>
+                <a href="#tattoos" class="hover:text-white transition">Tattoos</a>
+                <a href="#caps" class="hover:text-white transition">Caps</a>
+                <a href="#accessories" class="hover:text-white transition">Accessories</a>
+                <a href="#collections" class="hover:text-white transition">Collections</a>
+                <a href="#about" class="hover:text-white transition">About</a>
+            </nav>
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-5 text-gray-300">
+                <button class="hover:text-neoncyan transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="hover:text-neoncyan transition"><i class="fa-regular fa-heart"></i></button>
+                <button class="hover:text-neoncyan transition relative flex items-center space-x-1">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="text-xs font-bold font-mono">CART (2)</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- 🌌 Main Landing Section (Inspired by Trendora) -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative overflow-hidden">
-        <!-- Background Accents (Replaced smileys with cyber sigils) -->
-        <div class="absolute -top-20 -left-20 w-96 h-96 bg-neoncyan/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-40 right-40 text-neonpink/10 text-9xl rotate-12 pointer-events-none"><i class="fas fa-bolt"></i></div>
+    <!-- 🌌 HERO SECTION (As seen in design reference) -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        
+        <!-- Background Handwritten Vibe Quote (Left Side) -->
+        <div class="absolute top-10 left-4 text-gray-500 font-hand text-xl md:text-2xl -rotate-6 pointer-events-none hidden lg:block">
+            the world is loud.<br>be yourself louder. 🤍
+        </div>
 
-        <!-- Hero Text Block (Left) -->
-        <div class="relative z-10 flex flex-col md:flex-row items-start gap-16">
-            <div class="w-full md:w-1/3 space-y-12">
-                <div class="space-y-2">
-                    <span class="text-neoncyan font-mono text-sm tracking-widest uppercase">//_PROJECT_GAVI_DRIFTS</span>
-                    <h2 class="text-6xl md:text-7xl font-black uppercase tracking-tighter leading-none">
-                        SHOP <br> YOUR <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-neoncyan to-neonpink text-shadow-neon">VIBE.</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left Text Column -->
+            <div class="lg:col-span-7 space-y-8 z-10">
+                <div class="space-y-4">
+                    <h2 class="text-6xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none text-white">
+                        BE YOU.<br>NOT THEM.
                     </h2>
+                    <p class="text-gray-400 text-sm md:text-base font-mono uppercase tracking-widest">
+                        CLOTHES. TATTOOS. CAPS. ACCESSORIES.<br>ALL YOUR VIBE. ALL YOU.
+                    </p>
                 </div>
-                
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Explore exclusive Cyberpunk street collections. Crafted for the digital underground. Secure, encrypted, and brutally aesthetic fits.
-                </p>
 
-                <!-- Feature List (Cyber-icons) -->
-                <ul class="space-y-6 text-sm font-medium">
-                    <li class="flex items-center space-x-4">
-                        <i class="fas fa-code-branch text-neoncyan text-lg w-6"></i>
-                        <span><strong class="text-white">Version 1.0 Drops:</strong> Sourced Nationwide.</span>
-                    </li>
-                    <li class="flex items-center space-x-4">
-                        <i class="fas fa-lock text-neoncyan text-lg w-6"></i>
-                        <span><strong class="text-white">Encrypted Checkout:</strong> Safe & Private.</span>
-                    </li>
-                    <li class="flex items-center space-x-4">
-                        <i class="fas fa-shipping-fast text-neoncyan text-lg w-6"></i>
-                        <span><strong class="text-white">Express Neural Link:</strong> Fast global shipping.</span>
-                    </li>
-                </ul>
+                <!-- Handwritten Subtext -->
+                <div class="text-neoncyan font-hand text-2xl flex items-center space-x-2">
+                    <span>made for the ones who don't fit in</span>
+                    <span>🤍</span>
+                </div>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-col space-y-4 pt-8">
-                    <button class="w-full bg-neoncyan text-obsidian py-4 rounded-xl font-extrabold uppercase tracking-wider hover:bg-white transition shadow-shadow-neon">
-                        EXPLORE HOLIDAY DROPS
-                    </button>
-                    <button class="w-full bg-cardbg border border-gray-700 text-white py-4 rounded-xl font-extrabold uppercase tracking-wider hover:border-neonpink transition">
-                        VIEW OLD MONK COLLECTION
-                    </button>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#shop" class="bg-obsidian border border-gray-700 hover:border-neoncyan text-white text-center px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider transition flex items-center justify-center space-x-3 group">
+                        <span>SHOP NOW</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </a>
+                    <a href="#collections" class="text-gray-400 hover:text-white text-center text-xs font-bold uppercase tracking-widest px-4 py-4 transition">
+                        EXPLORE COLLECTIONS →
+                    </a>
                 </div>
             </div>
 
-            <!-- 📲 Mobile Mockup Section (Center & Right) -->
-            <div class="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-8 items-start">
+            <!-- Right Hero Image Column (Model with Cap & Text) -->
+            <div class="lg:col-span-5 relative">
+                <div class="absolute -top-6 right-10 text-gray-400 font-hand text-xl rotate-3 z-20">
+                    CREATE YOURSELF ✨
+                </div>
+                <!-- Background Handwritten Quote (Right Side) -->
+                <div class="absolute -bottom-6 right-4 text-gray-500 font-hand text-xl rotate-6 pointer-events-none z-20 hidden sm:block">
+                    good things take time 🤍
+                </div>
                 
-                <!-- Mockup 1: Catalog Screen (Black Theme) -->
-                <div class="border-4 border-gray-900 rounded-[3rem] shadow-2xl p-3 bg-black mt-10">
-                    <div class="aspect-[9/19.5] rounded-[2.5rem] bg-obsidian overflow-hidden relative border border-gray-700">
-                        <!-- Screen Header -->
-                        <div class="p-4 flex justify-between items-center text-white">
-                            <div class="w-20 h-4 bg-black rounded-full"></div>
-                            <div class="flex items-center space-x-1.5 text-xs"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></div>
-                        </div>
-                        <!-- Screen Content: Catalog -->
-                        <div class="p-5 space-y-6">
-                            <div class="flex items-center justify-between"><div class="w-10 h-10 rounded-full bg-gray-800"></div><div class="flex space-x-2 text-neoncyan"><i class="fas fa-search"></i><i class="fas fa-shopping-cart"></i></div></div>
-                            <div class="text-white space-y-1"><h3 class="text-sm font-bold">Hello Gavi //</h3><p class="text-xs text-gray-400">Access your digital closet.</p></div>
-                            <div class="grid grid-cols-4 gap-2 text-center text-xs">
-                                <div class="py-1.5 bg-neoncyan text-obsidian rounded-full font-bold">ALL</div>
-                                <div class="py-1.5 bg-cardbg text-gray-300 rounded-full hover:bg-neoncyan hover:text-obsidian transition">NEW</div>
-                                <div class="py-1.5 bg-cardbg text-gray-300 rounded-full hover:bg-neoncyan hover:text-obsidian transition">TEES</div>
-                                <div class="py-1.5 bg-cardbg text-gray-300 rounded-full hover:bg-neoncyan hover:text-obsidian transition">TECH</div>
-                            </div>
-                            <!-- Product Card 1 (Dark) -->
-                            <div class="bg-cardbg rounded-2xl p-4 space-y-3 border border-gray-700 hover:border-neoncyan transition">
-                                <div class="h-40 bg-black rounded-xl flex items-center justify-center">
-                                    <i class="fas fa-ghost text-5xl text-gray-700"></i>
-                                </div>
-                                <div class="flex justify-between items-start"><h4 class="text-white text-sm font-bold">Old Monk Edition Tee</h4><span class="text-neoncyan font-bold text-sm">₹1,499</span></div>
-                                <div class="flex justify-between items-center text-gray-400 text-xs"><p>Glow-in-the-dark sigil.</p><div class="flex space-x-1.5 text-neoncyan"><i class="fas fa-heart"></i><i class="fas fa-bookmark"></i></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mockup 2: Product Details Screen (Black Theme) -->
-                <div class="border-4 border-gray-900 rounded-[3rem] shadow-2xl p-3 bg-black">
-                    <div class="aspect-[9/19.5] rounded-[2.5rem] bg-obsidian overflow-hidden relative border border-gray-700">
-                        <div class="p-4 flex justify-between items-center text-white"><div class="w-20 h-4 bg-black rounded-full"></div><div class="flex items-center space-x-1.5 text-xs"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></div></div>
-                        <!-- Screen Content: Details -->
-                        <div class="p-5 space-y-6">
-                            <div class="flex justify-between items-center"><button class="text-white"><i class="fas fa-arrow-left"></i></button><div class="flex space-x-2 text-white"><i class="fas fa-share-alt"></i><i class="far fa-heart"></i></div></div>
-                            <div class="h-52 bg-cardbg rounded-2xl flex items-center justify-center p-4 border border-gray-800">
-                                <i class="fas fa-vest text-8xl text-neonpink"></i>
-                            </div>
-                            <div class="flex justify-between items-start">
-                                <div class="text-white space-y-1">
-                                    <h3 class="text-lg font-extrabold uppercase tracking-tight">Crimson Cyber Bomber</h3>
-                                    <p class="text-sm text-gray-400">GAVI DRIFTS // HOLIDAY DROP</p>
-                                </div>
-                                <span class="text-neonpink font-bold text-2xl">₹3,999</span>
-                            </div>
-                            <div class="space-y-3">
-                                <p class="text-sm text-white">SELECT SIZE:</p>
-                                <div class="grid grid-cols-6 gap-2 text-center text-xs">
-                                    <div class="py-2 bg-cardbg border border-gray-700 text-gray-400 rounded-xl">XS</div>
-                                    <div class="py-2 bg-cardbg border border-neonpink text-neonpink rounded-xl shadow-shadow-neon">S</div>
-                                    <div class="py-2 bg-cardbg border border-gray-700 text-gray-400 rounded-xl">M</div>
-                                    <div class="py-2 bg-cardbg border border-gray-700 text-gray-400 rounded-xl">L</div>
-                                    <div class="py-2 bg-cardbg border border-gray-700 text-gray-400 rounded-xl">XL</div>
-                                    <div class="py-2 bg-cardbg border border-gray-700 text-gray-400 rounded-xl">2X</div>
-                                </div>
-                            </div>
-                            <button class="w-full bg-neonpink text-white py-3 rounded-xl font-black uppercase tracking-wider hover:bg-white hover:text-obsidian transition shadow-shadow-neon">
-                                ADD TO CART
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mockup 3: Checkout Screen (Black Theme) -->
-                <div class="border-4 border-gray-900 rounded-[3rem] shadow-2xl p-3 bg-black mt-10">
-                    <div class="aspect-[9/19.5] rounded-[2.5rem] bg-obsidian overflow-hidden relative border border-gray-700">
-                        <div class="p-4 flex justify-between items-center text-white"><div class="w-20 h-4 bg-black rounded-full"></div><div class="flex items-center space-x-1.5 text-xs"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></div></div>
-                        <!-- Screen Content: Checkout -->
-                        <div class="p-5 space-y-6">
-                            <button class="text-white"><i class="fas fa-arrow-left"></i></button>
-                            <h3 class="text-xl font-black text-white uppercase tracking-tight">ENCRYPTED CART (2)</h3>
-                            <div class="bg-cardbg p-4 rounded-2xl border border-gray-800 space-y-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-black rounded-lg flex items-center justify-center"><i class="fas fa-vest text-3xl text-neonpink"></i></div>
-                                    <div class="flex-grow text-white text-sm"><p class="font-bold">Crimson Bomber Jacket</p><p class="text-gray-400">Size: S / Qty: 1</p></div>
-                                    <div class="text-neonpink font-bold text-sm">₹3,999</div>
-                                </div>
-                                <div class="border-t border-gray-700 pt-4 flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-black rounded-lg flex items-center justify-center"><i class="fas fa-ghost text-3xl text-neoncyan"></i></div>
-                                    <div class="flex-grow text-white text-sm"><p class="font-bold">Old Monk Tee</p><p class="text-gray-400">Size: L / Qty: 1</p></div>
-                                    <div class="text-neoncyan font-bold text-sm">₹1,499</div>
-                                </div>
-                            </div>
-                            <div class="bg-cardbg p-4 rounded-2xl border border-gray-800 space-y-2 text-sm text-gray-300">
-                                <div class="flex justify-between text-gray-400"><span>Subtotal</span><span>₹5,498</span></div>
-                                <div class="flex justify-between text-gray-400"><span>Neural Link (Shipping)</span><span>₹99</span></div>
-                                <div class="flex justify-between text-white font-bold border-t border-gray-700 pt-2 mt-2"><span>TOTAL PAYABLE</span><span>₹5,597</span></div>
-                            </div>
-                            <button class="w-full bg-neongreen text-obsidian py-4 rounded-xl font-extrabold uppercase tracking-wider hover:bg-white transition">
-                                CONFIRM SECURE ORDER
-                            </button>
-                        </div>
+                <div class="relative h-[420px] rounded-3xl overflow-hidden border border-gray-800 bg-cardbg shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Gavi Drifts Model" class="w-full h-full object-cover opacity-80">
+                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                    
+                    <!-- Text Overlay on Model Jacket -->
+                    <div class="absolute bottom-6 left-6 right-6 text-center">
+                        <p class="text-white font-black uppercase text-lg tracking-widest drop-shadow-md">DISCIPLINE TODAY</p>
+                        <p class="text-white font-black uppercase text-xl tracking-wider drop-shadow-md text-neoncyan">FREEDOM TOMORROW</p>
+                        <div class="text-white font-hand text-lg mt-1">★</div>
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <!-- 🖼️ Floating Aesthetic Banners (Replaced with Cyber-style) -->
-        <!-- Banner 1 (Replacing "Good Vibes Good Finds") -->
-        <div class="absolute bottom-20 left-0 w-64 bg-neonpink text-obsidian p-5 rounded-2xl shadow-2xl transform -rotate-6 z-20 border-4 border-black">
-            <i class="fas fa-skull text-3xl mb-3"></i>
-            <p class="text-sm font-black uppercase tracking-tighter leading-tight">Limited Neural-Link Drop Live. <br>Code: GAVI_PUNK_77</p>
+        <!-- 💎 Brand Value Badges Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-gray-800/80 text-center">
+            <div class="space-y-1">
+                <i class="fa-solid fa-gem text-neoncyan text-lg mb-2"></i>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white">ORIGINAL DESIGN</h4>
+                <p class="text-[11px] text-gray-400">NOT BASIC. NOT BORING.</p>
+            </div>
+            <div class="space-y-1">
+                <i class="fa-solid fa-shield-halved text-neoncyan text-lg mb-2"></i>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white">QUALITY MATERIALS</h4>
+                <p class="text-[11px] text-gray-400">MADE TO LAST</p>
+            </div>
+            <div class="space-y-1">
+                <i class="fa-solid fa-bolt text-neonpink text-lg mb-2"></i>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white">MADE FOR YOU</h4>
+                <p class="text-[11px] text-gray-400">REAL PEOPLE. REAL STYLE.</p>
+            </div>
+            <div class="space-y-1">
+                <i class="fa-solid fa-globe text-neoncyan text-lg mb-2"></i>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white">WORLDWIDE SHIPPING</h4>
+                <p class="text-[11px] text-gray-400">ANYWHERE. EVERYWHERE.</p>
+            </div>
         </div>
+    </section>
 
-        <!-- Banner 2 (Replacing "Available for work") -->
-        <div class="absolute -bottom-10 left-96 w-72 bg-cardbg text-white p-4 rounded-xl shadow-2xl transform rotate-3 z-20 border border-gray-700 flex items-center space-x-4">
-            <i class="fas fa-satellite-dish text-neoncyan text-4xl"></i>
+    <!-- 📦 CATEGORIES & FEATURED GRID SECTION -->
+    <section id="shop" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between">
             <div>
-                <h4 class="text-sm font-black uppercase tracking-wider">Project Gavi Drifts v1.0</h4>
-                <p class="text-xs text-gray-400">Now Accepting Global Connections.</p>
+                <span class="text-neoncyan text-xs font-mono uppercase tracking-widest">// CATALOG_DIRECT_ACCESS</span>
+                <h3 class="text-3xl font-black uppercase tracking-tight text-white mt-1">Everything you need. One place.</h3>
             </div>
         </div>
 
-    </main>
+        <!-- 4-Column Category Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Clothes -->
+            <div id="clothes" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neoncyan transition">
+                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Clothes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
+                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
+                </div>
+                <div class="p-6 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-extrabold uppercase tracking-wide text-white">CLOTHES</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">WEAR YOUR MINDSET →</p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- 🤖 Footer (Minimalist Cyberpunk) -->
-    <footer class="border-t border-gray-800 mt-32 bg-cardbg py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500 font-mono">
-            <p>© 2026 // GAVI DRIFTS SYSTEMS // SECURE NATIONWIDE NATIVE SOURCING // UNIFIED CYBERNETIC APPAREL PLATFORM</p>
+            <!-- Tattoos -->
+            <div id="tattoos" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neonpink transition">
+                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+                    <img src="https://images.unsplash.com/photo-1598371839606-9185d75e0a84?auto=format&fit=crop&w=600&q=80" alt="Tattoos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
+                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">😊</span>
+                </div>
+                <div class="p-6 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-extrabold uppercase tracking-wide text-white">TATTOOS</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">INK YOUR STORY →</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caps -->
+            <div id="caps" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neongreen transition">
+                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" alt="Caps" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
+                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
+                </div>
+                <div class="p-6 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-extrabold uppercase tracking-wide text-white">CAPS</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">TOP OFF YOUR VIBE →</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessories -->
+            <div id="accessories" class="bg-cardbg border border-gray-800 rounded-2xl overflow-hidden group hover:border-neoncyan transition">
+                <div class="h-64 bg-gray-900 relative overflow-hidden flex items-center justify-center p-6">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80" alt="Accessories" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
+                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">🤍</span>
+                </div>
+                <div class="p-6 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-extrabold uppercase tracking-wide text-white">ACCESSORIES</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">DETAILS MATTER →</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ⚡ EDITORIAL FEATURE BANNERS -->
+    <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Feature Box 1: Not Just a Brand -->
+        <div class="bg-cardbg border border-gray-800 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute top-6 right-6 text-white font-hand text-2xl">★</div>
+            <div class="space-y-4 relative z-10">
+                <span class="text-neoncyan text-xs font-mono uppercase tracking-widest">// MANIFESTO</span>
+                <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">NOT JUST A BRAND.<br>A WAY OF LIFE.</h3>
+                <p class="text-gray-400 text-sm max-w-md">FOR THE ONES WHO THINK DIFFERENT. LIVE DIFFERENT, ARE DIFFERENT.</p>
+            </div>
+            <div class="mt-8 relative z-10">
+                <div class="h-64 rounded-2xl overflow-hidden border border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Editorial" class="w-full h-full object-cover opacity-80">
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Box 2: Drop 07 -->
+        <div id="collections" class="bg-cardbg border border-gray-800 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
+            <div class="absolute top-6 right-6 text-white font-hand text-2xl">🤍</div>
+            <div class="space-y-4 relative z-10">
+                <span class="text-neonpink text-xs font-mono uppercase tracking-widest">// NEW DROP</span>
+                <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">DROP 07</h3>
+                <p class="text-gray-400 text-sm font-mono">OUT NOW // limited. exclusive. yours.</p>
+            </div>
+            <div class="mt-8 grid grid-cols-2 gap-4 relative z-10">
+                <div class="h-56 rounded-2xl overflow-hidden border border-gray-800 bg-gray-900 flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80" alt="Cap Drop" class="w-full h-full object-cover opacity-80">
+                </div>
+                <div class="h-56 rounded-2xl overflow-hidden border border-gray-800 bg-gray-900 flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Tee Drop" class="w-full h-full object-cover opacity-80">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 🌌 BOTTOM QUOTE BANNER -->
+    <section class="py-20 text-center relative overflow-hidden border-t border-b border-gray-800/80 my-12 bg-cardbg/50">
+        <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
+            <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-white">
+                WE ARE NOT A TREND.<br>WE ARE A GENERATION.
+            </h2>
+            <div class="text-neoncyan font-hand text-2xl">
+                different together 🤍
+            </div>
+        </div>
+    </section>
+
+    <!-- 📄 FOOTER -->
+    <footer id="about" class="border-t border-gray-800 bg-obsidian py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <!-- Col 1 -->
+            <div class="space-y-4">
+                <a href="#" class="text-xl font-black tracking-widest uppercase text-white flex items-center space-x-1">
+                    <span>GAVI.</span><span class="text-neoncyan text-xs">★</span>
+                </a>
+                <p class="text-gray-400 text-xs font-mono">WEAR WHAT FEELS LIKE YOU.</p>
+                <p class="text-gray-500 text-xs">© 2026 GAVI DRIFTS. ALL RIGHTS RESERVED.</p>
+            </div>
+            <!-- Col 2 -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-bold uppercase tracking-wider text-white font-mono">// SHOP</h5>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#clothes" class="hover:text-white transition">Clothes</a></li>
+                    <li><a href="#tattoos" class="hover:text-white transition">Tattoos</a></li>
+                    <li><a href="#caps" class="hover:text-white transition">Caps</a></li>
+                    <li><a href="#accessories" class="hover:text-white transition">Accessories</a></li>
+                    <li><a href="#collections" class="hover:text-white transition">Collections</a></li>
+                </ul>
+            </div>
+            <!-- Col 3 -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-bold uppercase tracking-wider text-white font-mono">// COMPANY</h5>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">About</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white transition">Shipping</a></li>
+                    <li><a href="#" class="hover:text-white transition">Returns</a></li>
+                </ul>
+            </div>
+            <!-- Col 4 -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-bold uppercase tracking-wider text-white font-mono">// FOLLOW US</h5>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                    <li><a href="#" class="hover:text-white transition">TikTok</a></li>
+                    <li><a href="#" class="hover:text-white transition">Pinterest</a></li>
+                    <li><a href="#" class="hover:text-white transition">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-gray-900 flex justify-between items-center text-[11px] text-gray-500 font-mono uppercase tracking-widest">
+            <span>DISCIPLINE • STYLE • IDENTITY</span>
+            <span>MADE FOR THE GENERATION THAT DOESN'T FIT IN. IT STANDS OUT. 🤍</span>
         </div>
     </footer>
 
