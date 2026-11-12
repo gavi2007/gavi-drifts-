@@ -1,320 +1,744 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAVI // BE YOU. ALWAYS.</title>
+    <title>GAVI DRIFTS | Wear What Feels Like You</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        obsidian: '#050508',
-                        cardbg: '#0c0c12',
+                        cyberBlack: '#070709',
+                        cyberDark: '#0e0f14',
+                        cyberCard: '#15161c',
+                        neonCyan: '#00f0ff',
+                        neonMagenta: '#ff007f',
+                        accentMuted: '#94a3b8',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
-                        hand: ['Caveat', 'cursive']
+                        handwriting: ['Caveat', 'cursive']
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts: Inter, JetBrains Mono, & Caveat -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .font-hand { font-family: 'Caveat', cursive; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070709;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #20222e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff007f;
+        }
+        .handwritten {
+            font-family: 'Caveat', cursive;
+        }
+        .cyber-grid {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
     </style>
 </head>
-<body class="bg-obsidian text-gray-100 font-sans selection:bg-white selection:text-obsidian min-h-screen">
+<body class="bg-cyberBlack text-gray-100 font-sans selection:bg-neonMagenta selection:text-white antialiased cyber-grid min-h-screen flex flex-col justify-between">
 
-    <!-- 🌐 Top Navigation Bar -->
-    <header class="border-b border-gray-900 bg-obsidian sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-cyberBlack/90 backdrop-blur-md border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
-            <div class="space-y-0.5">
-                <a href="#" class="text-xl font-black tracking-widest uppercase text-white block">GAVI</a>
-                <span class="text-[9px] text-gray-400 font-mono tracking-tighter block">BE YOU. ALWAYS.</span>
-            </div>
+            <a href="#" class="flex items-center space-x-2 group">
+                <span class="text-2xl sm:text-3xl font-black tracking-widest uppercase text-white font-sans">
+                    GAVI <span class="text-neonMagenta text-xl">★</span>
+                </span>
+            </a>
 
-            <!-- Nav Links -->
-            <nav class="hidden md:flex space-x-8 text-xs font-semibold tracking-wide text-gray-300">
-                <a href="#shop" class="hover:text-white transition">SHOP</a>
-                <a href="#clothes" class="hover:text-white transition">CLOTHES</a>
-                <a href="#tattoos" class="hover:text-white transition">TATTOOS</a>
-                <a href="#caps" class="hover:text-white transition">CAPS</a>
-                <a href="#accessories" class="hover:text-white transition">ACCESSORIES</a>
-                <a href="#collections" class="hover:text-white transition">COLLECTIONS</a>
-                <a href="#about" class="hover:text-white transition">ABOUT</a>
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-mono text-xs tracking-widest">
+                <a href="#shop" class="hover:text-neonMagenta transition-colors">SHOP</a>
+                <a href="#shop" onclick="filterProducts('clothes')" class="hover:text-neonMagenta transition-colors">CLOTHES</a>
+                <a href="#shop" onclick="filterProducts('tattoos')" class="hover:text-neonMagenta transition-colors">TATTOOS</a>
+                <a href="#shop" onclick="filterProducts('caps')" class="hover:text-neonMagenta transition-colors">CAPS</a>
+                <a href="#shop" onclick="filterProducts('accessories')" class="hover:text-neonMagenta transition-colors">ACCESSORIES</a>
+                <a href="#collections" class="hover:text-neonMagenta transition-colors">COLLECTIONS</a>
+                <a href="#about" class="hover:text-neonMagenta transition-colors">ABOUT</a>
             </nav>
 
-            <!-- Icons -->
-            <div class="flex items-center space-x-5 text-gray-300 text-sm">
-                <button class="hover:text-white transition"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <button class="hover:text-white transition"><i class="fa-regular fa-user"></i></button>
-                <button class="hover:text-white transition"><i class="fa-regular fa-heart"></i></button>
-                <button class="hover:text-white transition flex items-center space-x-1.5 text-xs font-mono">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span>CART (2)</span>
+            <!-- Actions: Wishlist, Cart & Mobile Menu Button -->
+            <div class="flex items-center space-x-4">
+                <button onclick="showToast('Wishlist feature synced.')" class="hidden sm:flex text-gray-400 hover:text-white p-2">
+                    <i class="fa-regular fa-heart text-lg"></i>
+                </button>
+                <button onclick="toggleCart()" class="relative bg-cyberCard border border-gray-800 hover:border-neonMagenta p-3 rounded-lg transition-all flex items-center space-x-2 group">
+                    <i class="fa-solid fa-bag-shopping text-neonMagenta group-hover:scale-110 transition-transform"></i>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-neonMagenta text-white font-mono font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-lg">0</span>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white p-2">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cyberDark border-b border-gray-800 px-6 py-4 space-y-3 font-mono text-xs tracking-wider">
+            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('all');" class="block py-2 hover:text-neonMagenta">SHOP ALL</a>
+            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('clothes');" class="block py-2 hover:text-neonMagenta">CLOTHES</a>
+            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('tattoos');" class="block py-2 hover:text-neonMagenta">TATTOOS</a>
+            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('caps');" class="block py-2 hover:text-neonMagenta">CAPS</a>
+            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('accessories');" class="block py-2 hover:text-neonMagenta">ACCESSORIES</a>
+            <a href="#collections" onclick="toggleMobileMenu()" class="block py-2 hover:text-neonMagenta">COLLECTIONS</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 hover:text-neonMagenta">ABOUT</a>
+        </div>
     </header>
 
-    <!-- 🌌 HERO SECTION -->
-    <section class="relative max-w-7xl mx-auto px-6 pt-12 pb-16">
-        
-        <!-- Top Right Handwritten Tag -->
-        <div class="absolute top-4 right-6 text-gray-400 font-hand text-xl text-right z-20 hidden lg:block leading-tight">
-            Different. minds. Style.<br>Some energy. <span class="text-white">★ 🤍</span>
-        </div>
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- HERO SECTION WITH MOODY CITY VIBES & HANDWRITTEN ACCENTS -->
+        <section class="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-28 border-b border-gray-900 bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(7,7,9,0.85), rgba(7,7,9,0.95)), url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=1600');">
             
-            <!-- Left Text Column -->
-            <div class="lg:col-span-6 space-y-6 z-10">
-                <div class="space-y-4">
-                    <h1 class="text-5xl sm:text-7xl font-black uppercase tracking-tight leading-none text-white">
-                        WEAR WHAT<br>FEELS LIKE YOU
-                    </h1>
-                    <p class="text-gray-400 text-xs sm:text-sm font-mono tracking-wide">
-                        CLOTHES. TATTOOS. CAPS. ACCESSORIES. ALL IN ONE PLACE.
-                    </p>
-                </div>
-
-                <!-- Handwritten Subtext -->
-                <div class="text-gray-300 font-hand text-xl">
-                    made for the generation that doesn't follow trends. it creates them.
-                </div>
-
-                <!-- CTA Buttons -->
-                <div class="flex items-center space-x-6 pt-2">
-                    <a href="#shop" class="bg-white text-obsidian px-8 py-4 rounded-full text-xs font-extrabold uppercase tracking-widest hover:bg-gray-200 transition flex items-center space-x-2">
-                        <span>SHOP NOW</span>
-                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </a>
-                    <a href="#collections" class="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition">
-                        EXPLORE COLLECTIONS
-                    </a>
-                </div>
+            <!-- Floating Handwritten Accent Accents -->
+            <div class="absolute top-8 left-6 sm:left-16 hidden lg:block text-pink-400/80 handwritten text-2xl rotate-[-4deg] pointer-events-none">
+                the world <br> is loud. <br> be yourself <br> louder. ♥
             </div>
 
-            <!-- Right Hero Image Column -->
-            <div class="lg:col-span-6 relative">
-                <div class="relative h-[420px] rounded-3xl overflow-hidden border border-gray-900 bg-cardbg shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80" alt="Model" class="w-full h-full object-cover opacity-85">
-                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+            <div class="absolute top-12 right-12 hidden lg:block text-pink-300/80 handwritten text-2xl rotate-[3deg] pointer-events-none">
+                good things <br> take time <br> ♥
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400">
+                        WEAR WHAT FEELS LIKE YOU
+                    </p>
+                    <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight uppercase leading-none text-white">
+                        BE YOU. <br>
+                        <span class="text-gray-400">NOT THEM.</span>
+                    </h1>
+                    <p class="text-gray-400 text-sm sm:text-base max-w-lg font-light">
+                        CLOTHES. TATTOOS. CAPS. ACCESSORIES. <br>
+                        ALL YOUR VIBE. ALL YOU.
+                    </p>
+                    <div class="flex items-center space-x-3 text-pink-400 handwritten text-2xl">
+                        <span>made for the ones who don't fit in ♥</span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#shop" class="px-8 py-4 bg-transparent border border-white hover:border-neonMagenta hover:bg-neonMagenta/10 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-lg transition-all text-center flex items-center justify-center space-x-2">
+                            <span>SHOP NOW</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#collections" class="px-8 py-4 text-gray-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-all text-center flex items-center justify-center space-x-2">
+                            <span>EXPLORE COLLECTIONS</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Feature Image / Card matching reference layout -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative bg-cyberCard border border-gray-800 rounded-2xl overflow-hidden shadow-2xl group">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=900" 
+                             alt="GAVI DRIFTS Hero Model" 
+                             class="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                             onerror="this.src='https://placehold.co/900x1125/121318/ff007f?text=GAVI+DRIFTS'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-transparent to-transparent flex flex-col justify-end p-6">
+                            <span class="handwritten text-pink-400 text-xl">CREATE YOURSELF</span>
+                            <div class="mt-2 pt-4 border-t border-white/10 flex justify-between items-end">
+                                <div>
+                                    <h3 class="text-sm font-mono tracking-widest uppercase text-white">DISCIPLINE TODAY</h3>
+                                    <p class="text-xs font-mono text-neonMagenta">FREEDOM TOMORROW ★</p>
+                                </div>
+                                <button onclick="quickAdd('Discipline Heavy Hoodie', 3499, 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=900')" class="bg-white text-black hover:bg-neonMagenta hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TRUST BADGES BAR -->
+        <section class="bg-cyberDark border-b border-gray-900 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center font-mono text-xs tracking-widest text-gray-400">
+                <div class="flex items-center justify-center space-x-2">
+                    <i class="fa-regular fa-heart text-neonMagenta"></i>
+                    <span>MADE FOR YOU</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-gem text-neonMagenta"></i>
+                    <span>QUALITY THAT LASTS</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-bolt text-neonMagenta"></i>
+                    <span>REAL. RAW. YOU.</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-globe text-neonMagenta"></i>
+                    <span>WORLDWIDE SHIPPING</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORY CARDS SECTION (MATCHING REFERENCE GRID) -->
+        <section class="py-16 bg-cyberBlack">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     
-                    <!-- Branding Badge on Hood -->
-                    <div class="absolute bottom-8 right-8 text-right">
-                        <span class="text-white font-black uppercase text-2xl tracking-widest block">GAVI</span>
-                        <div class="text-white font-hand text-xl mt-1">★</div>
+                    <!-- Clothes Category Card -->
+                    <div onclick="filterProducts('clothes')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
+                        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=600" alt="Clothes" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
+                            <h3 class="text-xl font-black uppercase tracking-wider text-white">CLOTHES</h3>
+                            <p class="text-xs font-mono text-neonMagenta mt-1">WEAR YOUR MINDSET →</p>
+                        </div>
+                    </div>
+
+                    <!-- Tattoos Category Card -->
+                    <div onclick="filterProducts('tattoos')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
+                        <img src="https://images.unsplash.com/photo-1611591475143-a129ff22c87e?auto=format&fit=crop&q=80&w=600" alt="Tattoos" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
+                            <h3 class="text-xl font-black uppercase tracking-wider text-white">TATTOOS</h3>
+                            <p class="text-xs font-mono text-neonMagenta mt-1">INK YOUR STORY →</p>
+                        </div>
+                    </div>
+
+                    <!-- Caps Category Card -->
+                    <div onclick="filterProducts('caps')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
+                        <img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&q=80&w=600" alt="Caps" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
+                            <h3 class="text-xl font-black uppercase tracking-wider text-white">CAPS</h3>
+                            <p class="text-xs font-mono text-neonMagenta mt-1">TOP OFF YOUR VIBE →</p>
+                        </div>
+                    </div>
+
+                    <!-- Accessories Category Card -->
+                    <div onclick="filterProducts('accessories')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600" alt="Accessories" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
+                            <h3 class="text-xl font-black uppercase tracking-wider text-white">ACCESSORIES</h3>
+                            <p class="text-xs font-mono text-neonMagenta mt-1">DETAILS MATTER →</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT CATALOG SECTION -->
+        <section id="shop" class="py-16 bg-cyberDark border-t border-b border-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-neonMagenta font-mono text-xs uppercase tracking-widest">// FULL CATALOG</span>
+                        <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight mt-1">THE DROP 2026</h2>
+                    </div>
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 font-mono text-xs">
+                        <button onclick="filterProducts('all')" class="filter-btn px-4 py-2 rounded-lg bg-white text-black font-bold transition-all" data-category="all">ALL</button>
+                        <button onclick="filterProducts('clothes')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="clothes">CLOTHES</button>
+                        <button onclick="filterProducts('tattoos')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="tattoos">TATTOOS</button>
+                        <button onclick="filterProducts('caps')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="caps">CAPS</button>
+                        <button onclick="filterProducts('accessories')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="accessories">ACCESSORIES</button>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Products injected dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER QUOTE SECTION -->
+        <section class="py-20 bg-cyberBlack relative overflow-hidden text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(7,7,9,0.9), rgba(7,7,9,0.9)), url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=1600');">
+            <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-6">
+                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-widest text-white">WE ARE NOT A TREND.<br>WE ARE A GENERATION. ★</h2>
+                <p class="handwritten text-pink-400 text-3xl">different together ♥</p>
+            </div>
+        </section>
+
+        <!-- COLLECTIONS SECTION -->
+        <section id="collections" class="py-20 bg-cyberDark border-t border-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-neonMagenta font-mono text-xs uppercase tracking-widest">// CURATED DROPS</span>
+                    <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight mt-1">SIGNATURE CAPSULES</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="relative rounded-2xl overflow-hidden group aspect-[16/9] bg-cyberCard border border-gray-800">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=1000" alt="Capsule 1" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-8 flex flex-col justify-end">
+                            <span class="font-mono text-xs text-neonMagenta uppercase">LIMITED CAPSULE</span>
+                            <h3 class="text-2xl font-black uppercase text-white mt-1">DISCIPLINE & FREEDOM</h3>
+                            <p class="text-gray-300 text-xs mt-2 max-w-sm">Heavyweight fleece tees and hoodies crafted for nocturnal hustlers.</p>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden group aspect-[16/9] bg-cyberCard border border-gray-800">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1000" alt="Capsule 2" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-8 flex flex-col justify-end">
+                            <span class="font-mono text-xs text-neonMagenta uppercase">ESSENTIALS</span>
+                            <h3 class="text-2xl font-black uppercase text-white mt-1">RAW MINIMALISM</h3>
+                            <p class="text-gray-300 text-xs mt-2 max-w-sm">Pitch-black dyes, minimalist embroidery, and tactile accessories.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
-
-        <!-- 💎 Value Badges Row -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-gray-900 text-center">
-            <div class="space-y-1">
-                <div class="text-white mb-2"><i class="fa-regular fa-star"></i></div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-white">ORIGINAL DESIGN</h4>
-                <p class="text-[11px] text-gray-500 font-mono">NOT BASIC. NOT BORING.</p>
-            </div>
-            <div class="space-y-1">
-                <div class="text-white mb-2"><i class="fa-regular fa-gem"></i></div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-white">QUALITY MATERIALS</h4>
-                <p class="text-[11px] text-gray-500 font-mono">MADE TO LAST</p>
-            </div>
-            <div class="space-y-1">
-                <div class="text-white mb-2"><i class="fa-solid fa-bolt"></i></div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-white">MADE FOR YOU</h4>
-                <p class="text-[11px] text-gray-500 font-mono">REAL PEOPLE. REAL STYLE.</p>
-            </div>
-            <div class="space-y-1">
-                <div class="text-white mb-2"><i class="fa-solid fa-globe"></i></div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-white">WORLDWIDE SHIPPING</h4>
-                <p class="text-[11px] text-gray-500 font-mono">ANYWHERE. EVERYWHERE.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 📦 CATEGORIES & FEATURED GRID -->
-    <section id="shop" class="py-16 max-w-7xl mx-auto px-6">
-        
-        <div class="mb-8">
-            <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">CATEGORIES</span>
-            <h3 class="text-3xl font-black uppercase tracking-tight text-white mt-1">Everything you need. One place.</h3>
-        </div>
-
-        <!-- 4-Column Category Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <!-- Clothes -->
-            <div id="clothes" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-800 transition">
-                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
-                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Clothes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
-                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">CLOTHES</h4>
+        <!-- ABOUT BRAND -->
+        <section id="about" class="py-20 bg-cyberBlack border-t border-gray-900">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="text-neonMagenta font-mono text-xs uppercase tracking-widest">// THE MANIFESTO</span>
+                <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">YOU DON'T NEED PERMISSION TO BE YOU</h2>
+                <p class="text-gray-400 text-base max-w-2xl mx-auto font-light leading-relaxed">
+                    GAVI DRIFTS is built for the individuals who refuse to blend in. We engineer premium streetwear, tactical accessories, and temporary ink that speaks louder than words.
+                </p>
+                <div class="pt-4 flex justify-center space-x-8 font-mono text-xs text-gray-400">
+                    <div>100% HEAVY COTTON</div>
+                    <div>•</div>
+                    <div>ETHICAL MICRO-BATCHES</div>
+                    <div>•</div>
+                    <div>GEN-Z APPROVED</div>
                 </div>
             </div>
+        </section>
 
-            <!-- Tattoos -->
-            <div id="tattoos" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-800 transition">
-                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
-                    <img src="https://images.unsplash.com/photo-1598371839606-9185d75e0a84?auto=format&fit=crop&w=600&q=80" alt="Tattoos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
-                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">TATTOOS</h4>
-                </div>
-            </div>
+    </main>
 
-            <!-- Caps -->
-            <div id="caps" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-800 transition">
-                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
-                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" alt="Caps" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
-                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">GAVI</span>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">CAPS</h4>
-                </div>
+    <!-- FOOTER -->
+    <footer class="bg-cyberDark border-t border-gray-900 py-12 text-gray-400 font-mono text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-2">
+                <span class="text-xl font-black uppercase text-white">GAVI <span class="text-neonMagenta">★</span></span>
+                <span class="text-gray-500">| WEAR WHAT FEELS LIKE YOU</span>
             </div>
-
-            <!-- Accessories -->
-            <div id="accessories" class="bg-cardbg border border-gray-900 rounded-2xl overflow-hidden group hover:border-gray-800 transition">
-                <div class="h-64 bg-black relative overflow-hidden flex items-center justify-center p-6">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80" alt="Accessories" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-70">
-                    <span class="absolute bottom-4 right-4 text-white font-hand text-xl">★</span>
-                </div>
-                <div class="p-5">
-                    <h4 class="font-extrabold uppercase tracking-wide text-white text-sm">ACCESSORIES</h4>
-                </div>
+            <div class="flex items-center space-x-6 text-sm">
+                <a href="#" class="hover:text-neonMagenta transition-colors">INSTAGRAM</a>
+                <a href="#" class="hover:text-neonMagenta transition-colors">TIKTOK</a>
+                <a href="#" class="hover:text-neonMagenta transition-colors">PINTEREST</a>
+                <a href="#" class="hover:text-neonMagenta transition-colors">YOUTUBE</a>
             </div>
-
-        </div>
-
-        <!-- ✍️ TATTOOS ARE FOREVER SECTION -->
-        <div class="mt-12 bg-cardbg border border-gray-900 rounded-3xl p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-6 space-y-4">
-                <h3 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white leading-tight">
-                    TATTOOS ARE.<br>ARE STYLE IS<br>FOREVER.
-                </h3>
-                <div class="text-gray-400 font-hand text-2xl flex items-center space-x-2 pt-2">
-                    <span>ink your story</span>
-                    <span>🤍</span>
-                </div>
+            <div class="text-gray-500 text-center md:text-right">
+                <p>© 2026 GAVI. ALL RIGHTS RESERVED.</p>
             </div>
-            <div class="lg:col-span-6 relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-gray-900">
-                <img src="https://images.unsplash.com/photo-1598371839606-9185d75e0a84?auto=format&fit=crop&w=900&q=80" alt="Tattoo Art" class="w-full h-full object-cover opacity-80">
-            </div>
-        </div>
-
-    </section>
-
-    <!-- ⚡ MANIFESTO & DROP 07 SECTION -->
-    <section class="py-12 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        <!-- Box 1: Manifesto -->
-        <div class="bg-cardbg border border-gray-900 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
-            <div class="absolute top-6 right-6 text-white font-hand text-2xl">★</div>
-            <div class="space-y-4 relative z-10">
-                <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">NOT JUST A BRAND.<br>A WAY OF LIFE.</h3>
-                <p class="text-gray-400 text-xs font-mono tracking-wider">FOR THE ONES WHO THINK DIFFERENT. LIVE DIFFERENT, ARE DIFFERENT.</p>
-            </div>
-            <div class="mt-8 relative z-10 h-64 rounded-2xl overflow-hidden border border-gray-900">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Manifesto" class="w-full h-full object-cover opacity-80">
-            </div>
-        </div>
-
-        <!-- Box 2: Drop 07 -->
-        <div id="collections" class="bg-cardbg border border-gray-900 rounded-3xl p-8 lg:p-12 relative overflow-hidden flex flex-col justify-between">
-            <div class="absolute top-6 right-6 text-white font-hand text-2xl">🤍</div>
-            <div class="space-y-2 relative z-10">
-                <span class="text-xs font-mono uppercase tracking-widest text-gray-500">NEW DROP</span>
-                <h3 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">DROP 07</h3>
-                <p class="text-gray-400 text-xs font-mono">OUT NOW // limited. exclusive. yours.</p>
-            </div>
-            <div class="mt-8 grid grid-cols-2 gap-4 relative z-10">
-                <div class="h-56 rounded-2xl overflow-hidden border border-gray-900 bg-black flex items-center justify-center">
-                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=400&q=80" alt="Drop Cap" class="w-full h-full object-cover opacity-80">
-                </div>
-                <div class="h-56 rounded-2xl overflow-hidden border border-gray-900 bg-black flex items-center justify-center">
-                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Drop Tee" class="w-full h-full object-cover opacity-80">
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- 🌌 BOTTOM QUOTE BANNER -->
-    <section class="py-20 text-center relative overflow-hidden border-t border-b border-gray-900 my-12 bg-cardbg/20">
-        <div class="max-w-4xl mx-auto px-6 relative z-10 space-y-4">
-            <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-white">
-                BE YOU. ALWAYS.
-            </h2>
-            <div class="text-gray-400 font-hand text-2xl">
-                different together <span class="text-white">★</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 📄 FOOTER -->
-    <footer id="about" class="border-t border-gray-900 bg-obsidian py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 text-xs">
-            <!-- Col 1 -->
-            <div class="space-y-3">
-                <span class="text-sm font-black tracking-widest uppercase text-white block">GAVI</span>
-                <p class="text-gray-500 font-mono">BE YOU. ALWAYS.</p>
-                <p class="text-gray-600">GAVI © 2026 ALL RIGHTS RESERVED</p>
-            </div>
-            <!-- Col 2 -->
-            <div class="space-y-3">
-                <h5 class="font-bold uppercase tracking-wider text-white font-mono">SHOP</h5>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#clothes" class="hover:text-white transition">Clothes</a></li>
-                    <li><a href="#tattoos" class="hover:text-white transition">Tattoos</a></li>
-                    <li><a href="#caps" class="hover:text-white transition">Caps</a></li>
-                    <li><a href="#accessories" class="hover:text-white transition">Accessories</a></li>
-                    <li><a href="#collections" class="hover:text-white transition">Collections</a></li>
-                </ul>
-            </div>
-            <!-- Col 3 -->
-            <div class="space-y-3">
-                <h5 class="font-bold uppercase tracking-wider text-white font-mono">COMPANY</h5>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">About</a></li>
-                    <li><a href="#" class="hover:text-white transition">Contact</a></li>
-                    <li><a href="#" class="hover:text-white transition">FAQ</a></li>
-                    <li><a href="#" class="hover:text-white transition">Shipping</a></li>
-                    <li><a href="#" class="hover:text-white transition">Returns</a></li>
-                </ul>
-            </div>
-            <!-- Col 4 -->
-            <div class="space-y-3">
-                <h5 class="font-bold uppercase tracking-wider text-white font-mono">FOLLOW US</h5>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">Instagram</a></li>
-                    <li><a href="#" class="hover:text-white transition">TikTok</a></li>
-                    <li><a href="#" class="hover:text-white transition">Pinterest</a></li>
-                    <li><a href="#" class="hover:text-white transition">YouTube</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 mt-16 pt-6 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-500 font-mono uppercase tracking-widest gap-4">
-            <span>DISCIPLINE • STYLE • IDENTITY</span>
-            <span>MADE FOR THE GENERATION THAT DOESN'T FIT IN. IT STANDS OUT. 🤍</span>
         </div>
     </footer>
 
+    <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-cyberDark border-l border-gray-800 shadow-2xl flex flex-col justify-between">
+                
+                <div class="p-6 border-b border-gray-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-bag-shopping text-neonMagenta"></i>
+                        <h3 class="font-mono font-black uppercase text-lg tracking-wider text-white">YOUR CART</h3>
+                        <span id="drawer-item-count" class="bg-cyberCard px-2 py-0.5 rounded text-xs font-mono text-neonMagenta">0 items</span>
+                    </div>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-gray-800/50">
+                    <!-- Dynamic Cart Items -->
+                </div>
+
+                <div class="p-6 border-t border-gray-800 bg-cyberCard/50 space-y-4">
+                    <div class="space-y-2 font-mono text-sm">
+                        <div class="flex justify-between text-gray-400">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="text-white">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-gray-400">
+                            <span>Shipping</span>
+                            <span class="text-neonMagenta">FREE</span>
+                        </div>
+                        <div class="flex justify-between text-base font-bold pt-2 border-t border-gray-800">
+                            <span class="text-white">Total</span>
+                            <span id="cart-total" class="text-neonMagenta">₹0</span>
+                        </div>
+                    </div>
+
+                    <button onclick="checkoutWhatsApp()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold uppercase tracking-wider rounded-xl transition-all shadow-lg flex items-center justify-center space-x-3">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>CHECKOUT VIA WHATSAPP</span>
+                    </button>
+                    <p class="text-[10px] text-center font-mono text-gray-500">Instant order dispatch & secure support verification</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT QUICK VIEW / DETAILS MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative bg-cyberCard border border-gray-800 rounded-2xl max-w-2xl w-full p-6 sm:p-8 z-10 grid grid-cols-1 md:grid-cols-2 gap-6 overflow-hidden">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="aspect-[4/5] rounded-xl overflow-hidden bg-black">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-col justify-between space-y-4 font-mono">
+                <div>
+                    <span id="modal-category" class="text-xs text-neonMagenta uppercase"></span>
+                    <h3 id="modal-title" class="text-2xl font-black uppercase text-white mt-1"></h3>
+                    <div id="modal-price" class="text-xl font-bold text-neonMagenta mt-2"></div>
+                    <p id="modal-desc" class="text-xs text-gray-400 font-sans mt-3 leading-relaxed"></p>
+                </div>
+                <div class="space-y-3 pt-4 border-t border-gray-800">
+                    <div class="flex space-x-2 text-xs">
+                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">S</button>
+                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">M</button>
+                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">L</button>
+                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">XL</button>
+                    </div>
+                    <button id="modal-add-btn" class="w-full py-3 bg-white text-black hover:bg-neonMagenta hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all">
+                        ADD TO CART
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-cyberCard border border-neonMagenta text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 font-mono text-xs">
+        <i class="fa-solid fa-check-circle text-neonMagenta text-base"></i>
+        <span id="toast-message">Item added to cart successfully.</span>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Discipline Heavy Oversized Hoodie",
+                category: "clothes",
+                price: 3499,
+                rating: 4.9,
+                reviews: 128,
+                image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=800",
+                description: "Heavyweight 480 GSM French Terry cotton. Designed for oversized streetwear fits and extreme comfort."
+            },
+            {
+                id: 2,
+                name: "Cyber Smile Temporary Tattoo Pack",
+                category: "tattoos",
+                price: 499,
+                rating: 5.0,
+                reviews: 310,
+                image: "https://images.unsplash.com/photo-1611591475143-a129ff22c87e?auto=format&fit=crop&q=80&w=800",
+                description: "Long-lasting waterproof temporary ink sheets featuring minimalist cyberpunk and smiley motifs."
+            },
+            {
+                id: 3,
+                name: "Focus Embroidered Streetwear Cap",
+                category: "caps",
+                price: 999,
+                rating: 4.8,
+                reviews: 94,
+                image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&q=80&w=800",
+                description: "Unstructured heavyweight cotton dad cap with premium tonal 'FOCUS' embroidery."
+            },
+            {
+                id: 4,
+                name: "Cuban Link Stainless Steel Chain",
+                category: "accessories",
+                price: 1699,
+                rating: 4.9,
+                reviews: 215,
+                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
+                description: "Tarnish-proof titanium stainless steel chain necklace with secure clasp."
+            },
+            {
+                id: 5,
+                name: "Freedom Boxy Heavy Tee",
+                category: "clothes",
+                price: 1499,
+                rating: 4.7,
+                reviews: 67,
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=800",
+                description: "320 GSM single jersey cotton with high-density minimalist back typography print."
+            },
+            {
+                id: 6,
+                name: "Void Minimalist Steel Ring Set",
+                category: "accessories",
+                price: 1199,
+                rating: 4.8,
+                reviews: 82,
+                image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800",
+                description: "Matte black stainless steel adjustable rings for everyday layering."
+            },
+            {
+                id: 7,
+                name: "Subversive Tactical Balaclava Cap",
+                category: "caps",
+                price: 1299,
+                rating: 4.6,
+                reviews: 45,
+                image: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&q=80&w=800",
+                description: "Versatile streetwear cap and face covering engineered for nocturnal city moves."
+            },
+            {
+                id: 8,
+                name: "Minimalist Star Ink Sheet",
+                category: "tattoos",
+                price: 599,
+                rating: 4.9,
+                reviews: 140,
+                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
+                description: "Handwritten typography and star motif temporary tattoos."
+            }
+        ];
+
+        let cart = [];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            updateCartUI();
+        });
+
+        function renderProducts(itemsToRender) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            if (itemsToRender.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center font-mono text-gray-500">NO PRODUCTS FOUND IN THIS SECTOR.</div>`;
+                return;
+            }
+
+            itemsToRender.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden transition-all duration-300 group flex flex-col justify-between";
+                card.innerHTML = `
+                    <div class="cursor-pointer" onclick="openModal(${product.id})">
+                        <div class="relative aspect-[4/5] bg-black overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                                 onerror="this.src='https://placehold.co/800x1000/121318/ff007f?text=GAVI+DRIFTS'">
+                        </div>
+                        <div class="p-5 space-y-1">
+                            <span class="text-[10px] font-mono text-neonMagenta uppercase tracking-widest">${product.category}</span>
+                            <h3 class="font-bold text-sm uppercase tracking-wide text-white group-hover:text-neonMagenta transition-colors">${product.name}</h3>
+                            <div class="text-white font-mono font-bold text-base">₹${product.price.toLocaleString('en-IN')}</div>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="addToCart(${product.id})" class="w-full py-3 bg-cyberDark hover:bg-neonMagenta hover:text-white border border-gray-800 hover:border-neonMagenta font-mono font-bold text-xs uppercase tracking-wider rounded-lg transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>ADD TO CART</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProducts(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.className = "filter-btn px-4 py-2 rounded-lg bg-white text-black font-bold transition-all";
+                } else {
+                    btn.className = "filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all";
+                }
+            });
+
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        function openModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modal-img').src = product.image;
+            document.getElementById('modal-category').textContent = product.category;
+            document.getElementById('modal-title').textContent = product.name;
+            document.getElementById('modal-price').textContent = `₹${product.price.toLocaleString('en-IN')}`;
+            document.getElementById('modal-desc').textContent = product.description;
+            document.getElementById('modal-add-btn').onclick = () => {
+                addToCart(product.id);
+                closeModal();
+            };
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`Added ${product.name} to cart.`);
+        }
+
+        function quickAdd(name, price, image) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id: Date.now(), name, price, image, quantity: 1 });
+            }
+            updateCartUI();
+            showToast(`Added ${name} to cart.`);
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const drawerCount = document.getElementById('drawer-item-count');
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            badge.textContent = totalItems;
+            drawerCount.textContent = `${totalItems} items`;
+            subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+            totalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="py-16 text-center space-y-3 font-mono text-gray-500">
+                        <i class="fa-solid fa-bag-shopping text-3xl text-gray-700"></i>
+                        <p>YOUR CART IS EMPTY.</p>
+                        <p class="text-xs">Wear what feels like you.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            cart.forEach(item => {
+                const itemEl = document.createElement('div');
+                itemEl.className = "py-4 flex items-center space-x-4";
+                itemEl.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-20 object-cover rounded-lg bg-black border border-gray-800">
+                    <div class="flex-1 space-y-1">
+                        <h4 class="font-bold text-sm uppercase text-white">${item.name}</h4>
+                        <div class="text-neonMagenta font-mono text-xs font-bold">₹${item.price.toLocaleString('en-IN')}</div>
+                        <div class="flex items-center space-x-3 pt-1 font-mono text-xs">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 rounded bg-cyberCard border border-gray-700 flex items-center justify-center hover:border-neonMagenta">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 rounded bg-cyberCard border border-gray-700 flex items-center justify-center hover:border-neonMagenta">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeItem(${item.id})" class="text-gray-500 hover:text-neonMagenta p-2">
+                        <i class="fa-solid fa-trash-can text-sm"></i>
+                    </button>
+                `;
+                container.appendChild(itemEl);
+            });
+        }
+
+        function updateQuantity(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+            showToast("Item removed from cart.");
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-xl";
+            }
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast("Your cart is empty!");
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            let message = `★ *NEW ORDER // GAVI DRIFTS* ★\n\n`;
+            cart.forEach((item, index) => {
+                message += `${index + 1}. *${item.name}*\n   Qty: ${item.quantity} | Price: ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n\n`;
+            });
+            message += `----------------------------\n`;
+            message += `*TOTAL AMOUNT: ₹${subtotal.toLocaleString('en-IN')}*\n`;
+            message += `*SHIPPING:* FREE\n`;
+            message += `----------------------------\n`;
+            message += `Please confirm my order.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = "919876543210"; 
+            const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            window.open(url, '_blank');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.textContent = message;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
