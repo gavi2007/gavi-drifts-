@@ -1,743 +1,776 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAVI DRIFTS | Wear What Feels Like You</title>
+    <title>GAVI DRIFTS — Wear What Feels Like You</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        cyberBlack: '#070709',
-                        cyberDark: '#0e0f14',
-                        cyberCard: '#15161c',
-                        neonCyan: '#00f0ff',
-                        neonMagenta: '#ff007f',
-                        accentMuted: '#94a3b8',
+                        darkBg: '#0b0b0b',
+                        cardBg: '#121212',
+                        cardBorder: '#222222',
+                        accentPink: '#ff79c6',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        handwriting: ['Caveat', 'cursive']
+                        handwriting: ['Caveat', 'cursive'],
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <!-- Google Fonts for Cyberpunk & Handwritten Vibe -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #070709;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #20222e;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ff007f;
-        }
-        .handwritten {
-            font-family: 'Caveat', cursive;
-        }
-        .cyber-grid {
-            background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
+        body { background-color: #0b0b0b; color: #ededed; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .font-handwriting { font-family: 'Caveat', cursive; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0b0b0b; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
     </style>
 </head>
-<body class="bg-cyberBlack text-gray-100 font-sans selection:bg-neonMagenta selection:text-white antialiased cyber-grid min-h-screen flex flex-col justify-between">
+<body class="bg-darkBg text-gray-100 antialiased selection:bg-neutral-800 selection:text-white">
 
-    <!-- NAVIGATION BAR -->
-    <header class="sticky top-0 z-50 bg-cyberBlack/90 backdrop-blur-md border-b border-gray-900">
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-black text-gray-400 text-xs py-2 px-4 text-center tracking-widest uppercase border-b border-neutral-900">
+        Worldwide Shipping • Free Delivery Across India Over ₹999 • <span class="text-white font-medium">Wear Your Mindset</span>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-[#0b0b0b]/90 backdrop-blur-md border-b border-neutral-900 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center space-x-2 group">
-                <span class="text-2xl sm:text-3xl font-black tracking-widest uppercase text-white font-sans">
-                    GAVI <span class="text-neonMagenta text-xl">★</span>
-                </span>
-            </a>
+            
+            <!-- LOGO -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
+                <span class="text-2xl font-black tracking-tighter text-white">GAVI DRIFTS<span class="text-neutral-500">.</span><span class="text-xs font-handwriting text-neutral-400 ml-1">★</span></span>
+            </div>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-mono text-xs tracking-widest">
-                <a href="#shop" class="hover:text-neonMagenta transition-colors">SHOP</a>
-                <a href="#shop" onclick="filterProducts('clothes')" class="hover:text-neonMagenta transition-colors">CLOTHES</a>
-                <a href="#shop" onclick="filterProducts('tattoos')" class="hover:text-neonMagenta transition-colors">TATTOOS</a>
-                <a href="#shop" onclick="filterProducts('caps')" class="hover:text-neonMagenta transition-colors">CAPS</a>
-                <a href="#shop" onclick="filterProducts('accessories')" class="hover:text-neonMagenta transition-colors">ACCESSORIES</a>
-                <a href="#collections" class="hover:text-neonMagenta transition-colors">COLLECTIONS</a>
-                <a href="#about" class="hover:text-neonMagenta transition-colors">ABOUT</a>
+            <!-- DESKTOP NAV LINKS -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-wider uppercase text-neutral-400">
+                <button onclick="switchPage('home')" class="nav-link hover:text-white transition-colors" data-page="home">Shop</button>
+                <button onclick="switchPage('clothes')" class="nav-link hover:text-white transition-colors" data-page="clothes">Clothes</button>
+                <button onclick="switchPage('tattoos')" class="nav-link hover:text-white transition-colors" data-page="tattoos">Tattoos</button>
+                <button onclick="switchPage('caps')" class="nav-link hover:text-white transition-colors" data-page="caps">Caps</button>
+                <button onclick="switchPage('accessories')" class="nav-link hover:text-white transition-colors" data-page="accessories">Accessories</button>
+                <button onclick="switchPage('collections')" class="nav-link hover:text-white transition-colors" data-page="collections">Collections</button>
+                <button onclick="switchPage('about')" class="nav-link hover:text-white transition-colors" data-page="about">About</button>
             </nav>
 
-            <!-- Actions: Wishlist, Cart & Mobile Menu Button -->
-            <div class="flex items-center space-x-4">
-                <button onclick="showToast('Wishlist feature synced.')" class="hidden sm:flex text-gray-400 hover:text-white p-2">
-                    <i class="fa-regular fa-heart text-lg"></i>
+            <!-- RIGHT ICONS (Search, Wishlist, Cart) -->
+            <div class="flex items-center space-x-5 text-neutral-300">
+                <button onclick="openSearchModal()" class="hover:text-white transition-colors"><i class="fa-solid fa-magnifying-glass text-sm"></i></button>
+                <button onclick="openWishlistModal()" class="hover:text-white transition-colors relative">
+                    <i class="fa-regular fa-heart text-sm"></i>
+                    <span id="wishlist-badge" class="absolute -top-2 -right-2 bg-neutral-700 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold hidden">0</span>
                 </button>
-                <button onclick="toggleCart()" class="relative bg-cyberCard border border-gray-800 hover:border-neonMagenta p-3 rounded-lg transition-all flex items-center space-x-2 group">
-                    <i class="fa-solid fa-bag-shopping text-neonMagenta group-hover:scale-110 transition-transform"></i>
-                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-neonMagenta text-white font-mono font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-lg">0</span>
+                <button onclick="toggleCartDrawer()" class="hover:text-white transition-colors relative flex items-center space-x-1.5 bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-full">
+                    <i class="fa-solid fa-bag-shopping text-xs"></i>
+                    <span id="cart-count" class="text-xs font-bold text-white">0</span>
                 </button>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white p-2">
-                    <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-neutral-300 hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Dropdown Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-cyberDark border-b border-gray-800 px-6 py-4 space-y-3 font-mono text-xs tracking-wider">
-            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('all');" class="block py-2 hover:text-neonMagenta">SHOP ALL</a>
-            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('clothes');" class="block py-2 hover:text-neonMagenta">CLOTHES</a>
-            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('tattoos');" class="block py-2 hover:text-neonMagenta">TATTOOS</a>
-            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('caps');" class="block py-2 hover:text-neonMagenta">CAPS</a>
-            <a href="#shop" onclick="toggleMobileMenu(); filterProducts('accessories');" class="block py-2 hover:text-neonMagenta">ACCESSORIES</a>
-            <a href="#collections" onclick="toggleMobileMenu()" class="block py-2 hover:text-neonMagenta">COLLECTIONS</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 hover:text-neonMagenta">ABOUT</a>
+        <!-- MOBILE NAV MENU -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-neutral-900 px-6 py-4 space-y-3 text-sm tracking-wider uppercase">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left py-2 text-neutral-400 hover:text-white">Shop</button>
+            <button onclick="switchPage('clothes'); toggleMobileMenu();" class="block w-full text-left py-2 text-neutral-400 hover:text-white">Clothes</button>
+            <button onclick="switchPage('tattoos'); toggleMobileMenu();" class="block w-full text-left py-2 text-neutral-400 hover:text-white">Tattoos</button>
+            <button onclick="switchPage('caps'); toggleMobileMenu();" class="block w-full text-left py-2 text-neutral-400 hover:text-white">Caps</button>
+            <button onclick="switchPage('accessories'); toggleMobileMenu();" class="block w-full text-left py-2 text-neutral-400 hover:text-white">Accessories</button>
+            <button onclick="switchPage('collections'); toggleMobileMenu();" class="block w-full text-left py-2 text-neutral-400 hover:text-white">Collections</button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="block w-full text-left py-2 text-neutral-400 hover:text-white">About</button>
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-grow">
+    <!-- ================= MAIN CONTENT CONTAINER ================= -->
+    <main id="app-container">
+        <!-- Dynamically rendered page content goes here -->
+    </main>
 
-        <!-- HERO SECTION WITH MOODY CITY VIBES & HANDWRITTEN ACCENTS -->
-        <section class="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-28 border-b border-gray-900 bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(7,7,9,0.85), rgba(7,7,9,0.95)), url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=1600');">
-            
-            <!-- Floating Handwritten Accent Accents -->
-            <div class="absolute top-8 left-6 sm:left-16 hidden lg:block text-pink-400/80 handwritten text-2xl rotate-[-4deg] pointer-events-none">
-                the world <br> is loud. <br> be yourself <br> louder. ♥
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-neutral-900 text-neutral-500 py-16 px-4 sm:px-6 lg:px-8 mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div>
+                <h3 class="text-white text-lg font-bold tracking-tighter mb-4">GAVI DRIFTS<span class="text-neutral-600">.</span></h3>
+                <p class="text-xs leading-relaxed text-neutral-400">Wear what feels like you. Cyberpunk streetwear, minimalist accessories, temporary ink, and rebellious attitude designed for the unapologetic generation.</p>
             </div>
-
-            <div class="absolute top-12 right-12 hidden lg:block text-pink-300/80 handwritten text-2xl rotate-[3deg] pointer-events-none">
-                good things <br> take time <br> ♥
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Explore</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="switchPage('clothes')" class="hover:text-white transition-colors">Clothes & Hoodies</button></li>
+                    <li><button onclick="switchPage('tattoos')" class="hover:text-white transition-colors">Temporary Tattoos</button></li>
+                    <li><button onclick="switchPage('caps')" class="hover:text-white transition-colors">Caps & Beanies</button></li>
+                    <li><button onclick="switchPage('accessories')" class="hover:text-white transition-colors">Chains & Phone Cases</button></li>
+                </ul>
             </div>
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Customer Care</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="hover:text-white transition-colors">Order Tracking</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Shipping & Delivery</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Returns & Exchanges</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Contact WhatsApp Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Connect</h4>
+                <div class="flex space-x-4 text-sm text-neutral-400 mb-6">
+                    <a href="https://instagram.com" target="_blank" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="hover:text-white"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://pinterest.com" target="_blank" class="hover:text-white"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-white"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                <p class="text-[11px] font-handwriting text-neutral-400">different together ♡</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-neutral-900/60 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-600">
+            <p>&copy; 2026 GAVI DRIFTS. ALL RIGHTS RESERVED.</p>
+            <p class="font-handwriting text-sm text-neutral-400 mt-2 sm:mt-0">WEAR WHAT FEELS LIKE YOU ♡</p>
+        </div>
+    </footer>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                
-                <div class="lg:col-span-7 space-y-6">
-                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400">
-                        WEAR WHAT FEELS LIKE YOU
-                    </p>
-                    <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight uppercase leading-none text-white">
-                        BE YOU. <br>
-                        <span class="text-gray-400">NOT THEM.</span>
-                    </h1>
-                    <p class="text-gray-400 text-sm sm:text-base max-w-lg font-light">
-                        CLOTHES. TATTOOS. CAPS. ACCESSORIES. <br>
-                        ALL YOUR VIBE. ALL YOU.
-                    </p>
-                    <div class="flex items-center space-x-3 text-pink-400 handwritten text-2xl">
-                        <span>made for the ones who don't fit in ♥</span>
+    <!-- CART SLIDE-OVER DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-[#111] border-l border-neutral-800 flex flex-col shadow-2xl">
+                <!-- Cart Header -->
+                <div class="p-6 border-b border-neutral-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-white">Your Cart</h2>
+                        <span id="drawer-item-count" class="text-xs bg-neutral-800 text-neutral-300 px-2 py-0.5 rounded-full font-mono">0</span>
                     </div>
+                    <button onclick="toggleCartDrawer()" class="text-neutral-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <!-- Cart Items List -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-neutral-900">
+                    <!-- Dynamic Cart Items -->
+                </div>
+                <!-- Cart Footer & Checkout -->
+                <div class="p-6 border-t border-neutral-800 bg-black space-y-4">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-neutral-400">Subtotal</span>
+                        <span id="cart-subtotal" class="font-mono font-bold text-white">₹0</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-neutral-500">
+                        <span>Shipping</span>
+                        <span>Calculated at checkout (Free over ₹999)</span>
+                    </div>
+                    <button onclick="checkoutWhatsApp()" class="w-full bg-white hover:bg-neutral-200 text-black font-bold uppercase text-xs tracking-widest py-4 rounded transition-colors flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Checkout via WhatsApp</span>
+                    </button>
+                    <p class="text-[10px] text-center text-neutral-600 font-handwriting">Instant order confirmation via WhatsApp chat ♡</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                        <a href="#shop" class="px-8 py-4 bg-transparent border border-white hover:border-neonMagenta hover:bg-neonMagenta/10 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-lg transition-all text-center flex items-center justify-center space-x-2">
-                            <span>SHOP NOW</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                        <a href="#collections" class="px-8 py-4 text-gray-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-all text-center flex items-center justify-center space-x-2">
-                            <span>EXPLORE COLLECTIONS</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
+    <!-- SEARCH MODAL -->
+    <div id="search-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-start pt-24 justify-center px-4">
+        <div class="w-full max-w-2xl bg-neutral-900 border border-neutral-800 rounded-xl p-6 shadow-2xl relative">
+            <button onclick="closeSearchModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-bold">Search GAVI DRIFTS</h3>
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-neutral-500 text-sm"></i>
+                <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="Search hoodies, caps, chains, tattoos..." class="w-full bg-black border border-neutral-800 rounded-lg pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-neutral-600">
+            </div>
+            <div id="search-results" class="mt-4 max-h-80 overflow-y-auto space-y-2">
+                <!-- Search suggestions -->
+            </div>
+        </div>
+    </div>
+
+    <!-- WISHLIST MODAL -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center px-4">
+        <div class="w-full max-w-lg bg-[#111] border border-neutral-800 rounded-xl p-6 shadow-2xl relative max-h-[80vh] flex flex-col">
+            <button onclick="closeWishlistModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xs uppercase tracking-widest text-white mb-4 font-bold">Saved Wishlist</h3>
+            <div id="wishlist-items-container" class="flex-1 overflow-y-auto space-y-3 divide-y divide-neutral-900">
+                <!-- Wishlist items -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL QUICK VIEW MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="w-full max-w-3xl bg-[#121212] border border-neutral-800 rounded-xl overflow-hidden shadow-2xl relative flex flex-col md:flex-row">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 text-neutral-400 hover:text-white bg-black/50 p-2 rounded-full"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="md:w-1/2 bg-neutral-900 flex items-center justify-center p-8">
+                <img id="modal-img" src="" alt="Product" class="max-h-80 object-cover rounded-lg shadow-md">
+            </div>
+            <div class="md:w-1/2 p-8 flex flex-col justify-between">
+                <div>
+                    <span id="modal-category" class="text-[10px] uppercase tracking-widest text-neutral-500 font-mono"></span>
+                    <h2 id="modal-name" class="text-xl font-bold text-white mt-1 mb-2"></h2>
+                    <p id="modal-price" class="text-lg font-mono font-bold text-white mb-4"></p>
+                    <p id="modal-desc" class="text-xs text-neutral-400 leading-relaxed mb-6">Designed with heavyweight cotton and premium minimalist finish for ultimate comfort and cyberpunk attitude.</p>
+                    
+                    <!-- Size Selector -->
+                    <div id="size-selector-container" class="mb-6">
+                        <label class="block text-[10px] uppercase tracking-widest text-neutral-400 mb-2 font-bold">Select Size</label>
+                        <div class="flex space-x-2">
+                            <button onclick="selectSize('S')" class="size-btn px-3 py-1.5 border border-neutral-800 text-xs text-neutral-300 rounded hover:border-white transition-colors">S</button>
+                            <button onclick="selectSize('M')" class="size-btn px-3 py-1.5 border border-neutral-800 text-xs text-neutral-300 rounded hover:border-white transition-colors">M</button>
+                            <button onclick="selectSize('L')" class="size-btn px-3 py-1.5 border border-neutral-800 text-xs text-neutral-300 rounded hover:border-white transition-colors">L</button>
+                            <button onclick="selectSize('XL')" class="size-btn px-3 py-1.5 border border-neutral-800 text-xs text-neutral-300 rounded hover:border-white transition-colors">XL</button>
+                        </div>
                     </div>
                 </div>
+                <button id="modal-add-btn" onclick="addCurrentProductToCart()" class="w-full bg-white hover:bg-neutral-200 text-black font-bold uppercase text-xs tracking-widest py-3.5 rounded transition-colors flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Add to Bag</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
-                <!-- Hero Feature Image / Card matching reference layout -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative bg-cyberCard border border-gray-800 rounded-2xl overflow-hidden shadow-2xl group">
-                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=900" 
-                             alt="GAVI DRIFTS Hero Model" 
-                             class="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                             onerror="this.src='https://placehold.co/900x1125/121318/ff007f?text=GAVI+DRIFTS'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-transparent to-transparent flex flex-col justify-end p-6">
-                            <span class="handwritten text-pink-400 text-xl">CREATE YOURSELF</span>
-                            <div class="mt-2 pt-4 border-t border-white/10 flex justify-between items-end">
-                                <div>
-                                    <h3 class="text-sm font-mono tracking-widest uppercase text-white">DISCIPLINE TODAY</h3>
-                                    <p class="text-xs font-mono text-neonMagenta">FREEDOM TOMORROW ★</p>
-                                </div>
-                                <button onclick="quickAdd('Discipline Heavy Hoodie', 3499, 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=900')" class="bg-white text-black hover:bg-neonMagenta hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
+    <!-- JAVASCRIPT APPLICATION CORE -->
+    <script>
+        // Database of Products
+        const products = [
+            { id: 1, name: "DISCIPLINE HOODIE", category: "clothes", price: 2499, img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80", desc: "Heavyweight 450GSM French Terry cotton oversized hoodie with minimalist chest embroidery." },
+            { id: 2, name: "GRAPHIC OVERSIZED TEE", category: "clothes", price: 1299, img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80", desc: "Acid-washed vintage black tee with cyberpunk typography on back." },
+            { id: 3, name: "CARGO UTILITY PANTS", category: "clothes", price: 2999, img: "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=80", desc: "Relaxed fit tactical multi-pocket cargo pants with adjustable ankle drawstrings." },
+            { id: 4, name: "BUTTERFLY TEMPORARY INK", category: "tattoos", price: 499, img: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=800&q=80", desc: "Realistic semi-permanent waterproof transfer tattoo sheet lasting up to 2 weeks." },
+            { id: 5, name: "SWORD & ROSE MINIMALIST INK", category: "tattoos", price: 499, img: "https://images.unsplash.com/photo-1598371839606-f1c504938a9d?auto=format&fit=crop&w=800&q=80", desc: "Detailed fine-line dagger and floral forearm temporary tattoo." },
+            { id: 6, name: "FOCUS CURVED CAP", category: "caps", price: 899, img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80", desc: "Washed cotton low-profile dad cap with embroidered 'Focus' statement." },
+            { id: 7, name: "SMILEY CYBER CAP", category: "caps", price: 899, img: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80", desc: "Matte black unstructured baseball cap with subtle embroidered motif." },
+            { id: 8, name: "TITANIUM CUBAN CHAIN", category: "accessories", price: 1499, img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80", desc: "Stainless steel anti-tarnish 12mm cuban link chain necklace." },
+            { id: 9, name: "MINIMALIST TOTE BAG", category: "accessories", price: 799, img: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80", desc: "Heavy canvas utility tote bag with reinforced handles and inner zip pocket." },
+            { id: 10, name: "CYBERPUNK PHONE CASE", category: "accessories", price: 699, img: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80", desc: "Matte shockproof phone case with engraved GAVI branding." }
+        ];
+
+        // State Management
+        let cart = JSON.parse(localStorage.getItem('gavi_cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('gavi_wishlist')) || [];
+        let currentPage = 'home';
+        let currentModalProduct = null;
+        let selectedSizeChoice = 'M';
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            switchPage('home');
+            updateCartBadge();
+            updateWishlistBadge();
+        });
+
+        // Router / Page Switcher
+        function switchPage(page) {
+            currentPage = page;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Update active nav styles
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                if(btn.getAttribute('data-page') === page) {
+                    btn.classList.add('text-white', 'border-b', 'border-white', 'pb-1');
+                } else {
+                    btn.classList.remove('text-white', 'border-b', 'border-white', 'pb-1');
+                }
+            });
+
+            const container = document.getElementById('app-container');
+
+            if (page === 'home') {
+                container.innerHTML = renderHomePage();
+            } else if (page === 'clothes') {
+                container.innerHTML = renderCategoryPage('clothes', 'Clothes & Hoodies', 'WEAR YOUR MINDSET');
+            } else if (page === 'tattoos') {
+                container.innerHTML = renderCategoryPage('tattoos', 'Temporary Tattoos', 'INK YOUR STORY');
+            } else if (page === 'caps') {
+                container.innerHTML = renderCategoryPage('caps', 'Caps & Headwear', 'TOP OFF YOUR VIBE');
+            } else if (page === 'accessories') {
+                container.innerHTML = renderCategoryPage('accessories', 'Accessories & Gear', 'DETAILS MATTER');
+            } else if (page === 'collections') {
+                container.innerHTML = renderCollectionsPage();
+            } else if (page === 'about') {
+                container.innerHTML = renderAboutPage();
+            }
+        }
+
+        // Render Home Page
+        function renderHomePage() {
+            return `
+                <!-- HERO SECTION -->
+                <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-darkBg to-darkBg px-4">
+                    <div class="absolute inset-0 z-0 opacity-40">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=2000&q=80" alt="Hero Background" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative z-10 max-w-5xl mx-auto text-center space-y-6">
+                        <span class="text-xs font-mono tracking-widest text-neutral-400 uppercase">GAVI DRIFTS COLLECTION 2026</span>
+                        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white uppercase leading-none">
+                            BE YOU.<br><span class="text-neutral-400">NOT THEM.</span>
+                        </h1>
+                        <p class="text-sm sm:text-base text-neutral-400 max-w-md mx-auto font-light">
+                            CLOTHES. TATTOOS. CAPS. ACCESSORIES.<br>ALL YOUR VIBE. ALL YOU.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                            <button onclick="switchPage('clothes')" class="w-full sm:w-auto bg-white hover:bg-neutral-200 text-black font-bold uppercase text-xs tracking-widest px-8 py-4 rounded transition-colors">
+                                SHOP NOW →
+                            </button>
+                            <button onclick="switchPage('collections')" class="w-full sm:w-auto border border-neutral-700 hover:border-white text-white font-medium uppercase text-xs tracking-widest px-8 py-4 rounded transition-colors">
+                                EXPLORE COLLECTIONS →
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Handwritten handwritten side accents -->
+                    <div class="absolute left-10 top-1/3 hidden lg:block font-handwriting text-neutral-400 text-lg rotate-[-6deg]">
+                        the world is loud.<br>be yourself louder. ♡
+                    </div>
+                    <div class="absolute right-10 top-1/3 hidden lg:block font-handwriting text-neutral-400 text-lg rotate-[6deg]">
+                        good things take time ♡
+                    </div>
+                </section>
+
+                <!-- BRAND VALUES BADGES -->
+                <section class="border-y border-neutral-900 bg-black/50 py-8">
+                    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="space-y-1"><i class="fa-solid fa-heart text-neutral-400 mb-2"></i><h4 class="text-xs uppercase font-bold text-white tracking-widest">Made For You</h4><p class="text-[11px] text-neutral-500">Unapologetic Gen Z aesthetics</p></div>
+                        <div class="space-y-1"><i class="fa-solid fa-gem text-neutral-400 mb-2"></i><h4 class="text-xs uppercase font-bold text-white tracking-widest">Quality That Lasts</h4><p class="text-[11px] text-neutral-500">450GSM heavy cotton & steel</p></div>
+                        <div class="space-y-1"><i class="fa-solid fa-bolt text-neutral-400 mb-2"></i><h4 class="text-xs uppercase font-bold text-white tracking-widest">Real. Raw. You.</h4><p class="text-[11px] text-neutral-500">Cyberpunk minimalist cuts</p></div>
+                        <div class="space-y-1"><i class="fa-solid fa-globe text-neutral-400 mb-2"></i><h4 class="text-xs uppercase font-bold text-white tracking-widest">Worldwide Shipping</h4><p class="text-[11px] text-neutral-500">Fast dispatch across India & globe</p></div>
+                    </div>
+                </section>
+
+                <!-- CATEGORIES GRID SHOWCASE -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                    <div class="text-center mb-12">
+                        <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">Browse Categories</h2>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">WHAT'S YOUR VIBE?</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Category 1 -->
+                        <div onclick="switchPage('clothes')" class="group relative bg-cardBg border border-cardBorder rounded-xl overflow-hidden cursor-pointer hover:border-neutral-600 transition-all duration-300">
+                            <div class="h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80" alt="Clothes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-[#121212]">
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Clothes</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Wear Your Mindset →</p>
+                            </div>
+                        </div>
+                        <!-- Category 2 -->
+                        <div onclick="switchPage('tattoos')" class="group relative bg-cardBg border border-cardBorder rounded-xl overflow-hidden cursor-pointer hover:border-neutral-600 transition-all duration-300">
+                            <div class="h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=800&q=80" alt="Tattoos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-[#121212]">
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Tattoos</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Ink Your Story →</p>
+                            </div>
+                        </div>
+                        <!-- Category 3 -->
+                        <div onclick="switchPage('caps')" class="group relative bg-cardBg border border-cardBorder rounded-xl overflow-hidden cursor-pointer hover:border-neutral-600 transition-all duration-300">
+                            <div class="h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80" alt="Caps" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-[#121212]">
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Caps</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Top Off Your Vibe →</p>
+                            </div>
+                        </div>
+                        <!-- Category 4 -->
+                        <div onclick="switchPage('accessories')" class="group relative bg-cardBg border border-cardBorder rounded-xl overflow-hidden cursor-pointer hover:border-neutral-600 transition-all duration-300">
+                            <div class="h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Accessories" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-[#121212]">
+                                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Accessories</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Details Matter →</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FEATURED PRODUCTS -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="flex justify-between items-end mb-10">
+                        <div>
+                            <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500">Featured Drop</h2>
+                            <h3 class="text-2xl font-bold text-white tracking-tight mt-1">BEST SELLERS</h3>
+                        </div>
+                        <button onclick="switchPage('clothes')" class="text-xs uppercase tracking-widest text-neutral-400 hover:text-white transition-colors">View All →</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        ${products.slice(0, 4).map(p => renderProductCard(p)).join('')}
+                    </div>
+                </section>
+
+                <!-- QUOTE BANNER -->
+                <section class="max-w-7xl mx-auto px-4 py-20 text-center">
+                    <div class="bg-gradient-to-r from-neutral-900 via-black to-neutral-900 border border-neutral-800 rounded-2xl py-16 px-6 relative overflow-hidden">
+                        <h3 class="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-4">WE ARE NOT A TREND.<br>WE ARE A GENERATION.</h3>
+                        <p class="font-handwriting text-xl text-neutral-400">different together ♡</p>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Render Dedicated Category Pages
+        function renderCategoryPage(categoryKey, title, subtitle) {
+            const filteredProducts = products.filter(p => p.category === categoryKey);
+            return `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="border-b border-neutral-900 pb-8 mb-12">
+                        <span class="text-xs font-mono uppercase tracking-widest text-neutral-500">${subtitle}</span>
+                        <h1 class="text-4xl font-black uppercase text-white tracking-tight mt-1">${title}</h1>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        ${filteredProducts.length > 0 ? filteredProducts.map(p => renderProductCard(p)).join('') : '<p class="text-neutral-500 text-sm">No items found in this section.</p>'}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Collections Page
+        function renderCollectionsPage() {
+            return `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="border-b border-neutral-900 pb-8 mb-12">
+                        <span class="text-xs font-mono uppercase tracking-widest text-neutral-500">CURATED DROPS</span>
+                        <h1 class="text-4xl font-black uppercase text-white tracking-tight mt-1">COLLECTIONS</h1>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="group relative bg-cardBg border border-cardBorder rounded-xl overflow-hidden cursor-pointer" onclick="switchPage('clothes')">
+                            <div class="h-96 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80" alt="Discipline" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-[#121212]">
+                                <h3 class="text-lg font-bold text-white uppercase">Discipline Builds Freedom</h3>
+                                <p class="text-xs text-neutral-400 mt-1">Heavyweight cotton collection designed for intense daily grind.</p>
+                            </div>
+                        </div>
+                        <div class="group relative bg-cardBg border border-cardBorder rounded-xl overflow-hidden cursor-pointer" onclick="switchPage('accessories')">
+                            <div class="h-96 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Cyberpunk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-[#121212]">
+                                <h3 class="text-lg font-bold text-white uppercase">Cyber Midnight</h3>
+                                <p class="text-xs text-neutral-400 mt-1">Stainless steel chains, rings, and minimalist tech accessories.</p>
+                            </div>
+                        </div>
+                        <div class="group relative bg-cardBg border border-cardBorder rounded-xl overflow-hidden cursor-pointer" onclick="switchPage('tattoos')">
+                            <div class="h-96 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=800&q=80" alt="Ink" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-[#121212]">
+                                <h3 class="text-lg font-bold text-white uppercase">Temporary Ink Series</h3>
+                                <p class="text-xs text-neutral-400 mt-1">Commit to the aesthetic without the permanent needle.</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            `;
+        }
 
-            </div>
-        </section>
-
-        <!-- TRUST BADGES BAR -->
-        <section class="bg-cyberDark border-b border-gray-900 py-6">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center font-mono text-xs tracking-widest text-gray-400">
-                <div class="flex items-center justify-center space-x-2">
-                    <i class="fa-regular fa-heart text-neonMagenta"></i>
-                    <span>MADE FOR YOU</span>
-                </div>
-                <div class="flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-gem text-neonMagenta"></i>
-                    <span>QUALITY THAT LASTS</span>
-                </div>
-                <div class="flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-bolt text-neonMagenta"></i>
-                    <span>REAL. RAW. YOU.</span>
-                </div>
-                <div class="flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-globe text-neonMagenta"></i>
-                    <span>WORLDWIDE SHIPPING</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- CATEGORY CARDS SECTION (MATCHING REFERENCE GRID) -->
-        <section class="py-16 bg-cyberBlack">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    
-                    <!-- Clothes Category Card -->
-                    <div onclick="filterProducts('clothes')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
-                        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=600" alt="Clothes" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
-                            <h3 class="text-xl font-black uppercase tracking-wider text-white">CLOTHES</h3>
-                            <p class="text-xs font-mono text-neonMagenta mt-1">WEAR YOUR MINDSET →</p>
-                        </div>
+        // Render About Page
+        function renderAboutPage() {
+            return `
+                <div class="max-w-4xl mx-auto px-4 py-20 space-y-12">
+                    <div class="text-center space-y-4">
+                        <span class="text-xs font-mono uppercase tracking-widest text-neutral-500">WHO WE ARE</span>
+                        <h1 class="text-4xl sm:text-6xl font-black uppercase text-white tracking-tight">GAVI DRIFTS.</h1>
+                        <p class="font-handwriting text-2xl text-neutral-400">wear what feels like you ♡</p>
                     </div>
-
-                    <!-- Tattoos Category Card -->
-                    <div onclick="filterProducts('tattoos')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
-                        <img src="https://images.unsplash.com/photo-1611591475143-a129ff22c87e?auto=format&fit=crop&q=80&w=600" alt="Tattoos" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
-                            <h3 class="text-xl font-black uppercase tracking-wider text-white">TATTOOS</h3>
-                            <p class="text-xs font-mono text-neonMagenta mt-1">INK YOUR STORY →</p>
-                        </div>
-                    </div>
-
-                    <!-- Caps Category Card -->
-                    <div onclick="filterProducts('caps')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
-                        <img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&q=80&w=600" alt="Caps" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
-                            <h3 class="text-xl font-black uppercase tracking-wider text-white">CAPS</h3>
-                            <p class="text-xs font-mono text-neonMagenta mt-1">TOP OFF YOUR VIBE →</p>
-                        </div>
-                    </div>
-
-                    <!-- Accessories Category Card -->
-                    <div onclick="filterProducts('accessories')" class="group relative bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden aspect-[4/5] cursor-pointer transition-all">
-                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600" alt="Accessories" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-6 flex flex-col justify-end">
-                            <h3 class="text-xl font-black uppercase tracking-wider text-white">ACCESSORIES</h3>
-                            <p class="text-xs font-mono text-neonMagenta mt-1">DETAILS MATTER →</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- PRODUCT CATALOG SECTION -->
-        <section id="shop" class="py-16 bg-cyberDark border-t border-b border-gray-900">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-                    <div>
-                        <span class="text-neonMagenta font-mono text-xs uppercase tracking-widest">// FULL CATALOG</span>
-                        <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight mt-1">THE DROP 2026</h2>
-                    </div>
-                    <!-- Filter Tabs -->
-                    <div class="flex flex-wrap gap-2 font-mono text-xs">
-                        <button onclick="filterProducts('all')" class="filter-btn px-4 py-2 rounded-lg bg-white text-black font-bold transition-all" data-category="all">ALL</button>
-                        <button onclick="filterProducts('clothes')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="clothes">CLOTHES</button>
-                        <button onclick="filterProducts('tattoos')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="tattoos">TATTOOS</button>
-                        <button onclick="filterProducts('caps')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="caps">CAPS</button>
-                        <button onclick="filterProducts('accessories')" class="filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all" data-category="accessories">ACCESSORIES</button>
-                    </div>
-                </div>
-
-                <!-- Product Grid -->
-                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Products injected dynamically -->
-                </div>
-            </div>
-        </section>
-
-        <!-- BANNER QUOTE SECTION -->
-        <section class="py-20 bg-cyberBlack relative overflow-hidden text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(7,7,9,0.9), rgba(7,7,9,0.9)), url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&q=80&w=1600');">
-            <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-6">
-                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-widest text-white">WE ARE NOT A TREND.<br>WE ARE A GENERATION. ★</h2>
-                <p class="handwritten text-pink-400 text-3xl">different together ♥</p>
-            </div>
-        </section>
-
-        <!-- COLLECTIONS SECTION -->
-        <section id="collections" class="py-20 bg-cyberDark border-t border-gray-900">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-neonMagenta font-mono text-xs uppercase tracking-widest">// CURATED DROPS</span>
-                    <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight mt-1">SIGNATURE CAPSULES</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="relative rounded-2xl overflow-hidden group aspect-[16/9] bg-cyberCard border border-gray-800">
-                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=1000" alt="Capsule 1" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-8 flex flex-col justify-end">
-                            <span class="font-mono text-xs text-neonMagenta uppercase">LIMITED CAPSULE</span>
-                            <h3 class="text-2xl font-black uppercase text-white mt-1">DISCIPLINE & FREEDOM</h3>
-                            <p class="text-gray-300 text-xs mt-2 max-w-sm">Heavyweight fleece tees and hoodies crafted for nocturnal hustlers.</p>
-                        </div>
-                    </div>
-                    <div class="relative rounded-2xl overflow-hidden group aspect-[16/9] bg-cyberCard border border-gray-800">
-                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1000" alt="Capsule 2" class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-cyberBlack via-cyberBlack/40 to-transparent p-8 flex flex-col justify-end">
-                            <span class="font-mono text-xs text-neonMagenta uppercase">ESSENTIALS</span>
-                            <h3 class="text-2xl font-black uppercase text-white mt-1">RAW MINIMALISM</h3>
-                            <p class="text-gray-300 text-xs mt-2 max-w-sm">Pitch-black dyes, minimalist embroidery, and tactile accessories.</p>
+                    <div class="bg-cardBg border border-cardBorder rounded-2xl p-8 sm:p-12 space-y-6 text-sm text-neutral-300 leading-relaxed">
+                        <p>Gavi Drifts was born out of a desire for uncompromised personal expression. We reject mass conformity and fast-fashion clutter. Every hoodie, cap, temporary ink sheet, and stainless steel chain is curated to match the cyberpunk minimalist aesthetic of the modern generation.</p>
+                        <p>Designed with rigorous attention to detail—from 450GSM heavy cotton fleece to anti-tarnish steel hardware—our pieces are built for those who walk their own path.</p>
+                        <div class="pt-6 border-t border-neutral-800 flex justify-between items-center text-xs text-neutral-500">
+                            <span>Based in Bengaluru & Jalandhar</span>
+                            <span class="font-handwriting text-lg text-neutral-400">stay real ♡</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            `;
+        }
 
-        <!-- ABOUT BRAND -->
-        <section id="about" class="py-20 bg-cyberBlack border-t border-gray-900">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-                <span class="text-neonMagenta font-mono text-xs uppercase tracking-widest">// THE MANIFESTO</span>
-                <h2 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">YOU DON'T NEED PERMISSION TO BE YOU</h2>
-                <p class="text-gray-400 text-base max-w-2xl mx-auto font-light leading-relaxed">
-                    GAVI DRIFTS is built for the individuals who refuse to blend in. We engineer premium streetwear, tactical accessories, and temporary ink that speaks louder than words.
-                </p>
-                <div class="pt-4 flex justify-center space-x-8 font-mono text-xs text-gray-400">
-                    <div>100% HEAVY COTTON</div>
-                    <div>•</div>
-                    <div>ETHICAL MICRO-BATCHES</div>
-                    <div>•</div>
-                    <div>GEN-Z APPROVED</div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-cyberDark border-t border-gray-900 py-12 text-gray-400 font-mono text-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-2">
-                <span class="text-xl font-black uppercase text-white">GAVI <span class="text-neonMagenta">★</span></span>
-                <span class="text-gray-500">| WEAR WHAT FEELS LIKE YOU</span>
-            </div>
-            <div class="flex items-center space-x-6 text-sm">
-                <a href="#" class="hover:text-neonMagenta transition-colors">INSTAGRAM</a>
-                <a href="#" class="hover:text-neonMagenta transition-colors">TIKTOK</a>
-                <a href="#" class="hover:text-neonMagenta transition-colors">PINTEREST</a>
-                <a href="#" class="hover:text-neonMagenta transition-colors">YOUTUBE</a>
-            </div>
-            <div class="text-gray-500 text-center md:text-right">
-                <p>© 2026 GAVI. ALL RIGHTS RESERVED.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SHOPPING CART SLIDE-OVER DRAWER -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
-
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-cyberDark border-l border-gray-800 shadow-2xl flex flex-col justify-between">
-                
-                <div class="p-6 border-b border-gray-800 flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-bag-shopping text-neonMagenta"></i>
-                        <h3 class="font-mono font-black uppercase text-lg tracking-wider text-white">YOUR CART</h3>
-                        <span id="drawer-item-count" class="bg-cyberCard px-2 py-0.5 rounded text-xs font-mono text-neonMagenta">0 items</span>
-                    </div>
-                    <button onclick="toggleCart()" class="text-gray-400 hover:text-white p-2">
-                        <i class="fa-solid fa-xmark text-xl"></i>
-                    </button>
-                </div>
-
-                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-gray-800/50">
-                    <!-- Dynamic Cart Items -->
-                </div>
-
-                <div class="p-6 border-t border-gray-800 bg-cyberCard/50 space-y-4">
-                    <div class="space-y-2 font-mono text-sm">
-                        <div class="flex justify-between text-gray-400">
-                            <span>Subtotal</span>
-                            <span id="cart-subtotal" class="text-white">₹0</span>
-                        </div>
-                        <div class="flex justify-between text-gray-400">
-                            <span>Shipping</span>
-                            <span class="text-neonMagenta">FREE</span>
-                        </div>
-                        <div class="flex justify-between text-base font-bold pt-2 border-t border-gray-800">
-                            <span class="text-white">Total</span>
-                            <span id="cart-total" class="text-neonMagenta">₹0</span>
-                        </div>
-                    </div>
-
-                    <button onclick="checkoutWhatsApp()" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold uppercase tracking-wider rounded-xl transition-all shadow-lg flex items-center justify-center space-x-3">
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
-                        <span>CHECKOUT VIA WHATSAPP</span>
-                    </button>
-                    <p class="text-[10px] text-center font-mono text-gray-500">Instant order dispatch & secure support verification</p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- PRODUCT QUICK VIEW / DETAILS MODAL -->
-    <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="relative bg-cyberCard border border-gray-800 rounded-2xl max-w-2xl w-full p-6 sm:p-8 z-10 grid grid-cols-1 md:grid-cols-2 gap-6 overflow-hidden">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <div class="aspect-[4/5] rounded-xl overflow-hidden bg-black">
-                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
-            </div>
-            <div class="flex flex-col justify-between space-y-4 font-mono">
-                <div>
-                    <span id="modal-category" class="text-xs text-neonMagenta uppercase"></span>
-                    <h3 id="modal-title" class="text-2xl font-black uppercase text-white mt-1"></h3>
-                    <div id="modal-price" class="text-xl font-bold text-neonMagenta mt-2"></div>
-                    <p id="modal-desc" class="text-xs text-gray-400 font-sans mt-3 leading-relaxed"></p>
-                </div>
-                <div class="space-y-3 pt-4 border-t border-gray-800">
-                    <div class="flex space-x-2 text-xs">
-                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">S</button>
-                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">M</button>
-                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">L</button>
-                        <button class="px-3 py-1 rounded bg-cyberDark border border-gray-700 hover:border-neonMagenta text-white">XL</button>
-                    </div>
-                    <button id="modal-add-btn" class="w-full py-3 bg-white text-black hover:bg-neonMagenta hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all">
-                        ADD TO CART
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NOTIFICATION TOAST -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-cyberCard border border-neonMagenta text-white px-6 py-4 rounded-xl shadow-2xl flex items-center space-x-3 font-mono text-xs">
-        <i class="fa-solid fa-check-circle text-neonMagenta text-base"></i>
-        <span id="toast-message">Item added to cart successfully.</span>
-    </div>
-
-    <!-- JAVASCRIPT APPLICATION LOGIC -->
-    <script>
-        const products = [
-            {
-                id: 1,
-                name: "Discipline Heavy Oversized Hoodie",
-                category: "clothes",
-                price: 3499,
-                rating: 4.9,
-                reviews: 128,
-                image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&q=80&w=800",
-                description: "Heavyweight 480 GSM French Terry cotton. Designed for oversized streetwear fits and extreme comfort."
-            },
-            {
-                id: 2,
-                name: "Cyber Smile Temporary Tattoo Pack",
-                category: "tattoos",
-                price: 499,
-                rating: 5.0,
-                reviews: 310,
-                image: "https://images.unsplash.com/photo-1611591475143-a129ff22c87e?auto=format&fit=crop&q=80&w=800",
-                description: "Long-lasting waterproof temporary ink sheets featuring minimalist cyberpunk and smiley motifs."
-            },
-            {
-                id: 3,
-                name: "Focus Embroidered Streetwear Cap",
-                category: "caps",
-                price: 999,
-                rating: 4.8,
-                reviews: 94,
-                image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&q=80&w=800",
-                description: "Unstructured heavyweight cotton dad cap with premium tonal 'FOCUS' embroidery."
-            },
-            {
-                id: 4,
-                name: "Cuban Link Stainless Steel Chain",
-                category: "accessories",
-                price: 1699,
-                rating: 4.9,
-                reviews: 215,
-                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
-                description: "Tarnish-proof titanium stainless steel chain necklace with secure clasp."
-            },
-            {
-                id: 5,
-                name: "Freedom Boxy Heavy Tee",
-                category: "clothes",
-                price: 1499,
-                rating: 4.7,
-                reviews: 67,
-                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=800",
-                description: "320 GSM single jersey cotton with high-density minimalist back typography print."
-            },
-            {
-                id: 6,
-                name: "Void Minimalist Steel Ring Set",
-                category: "accessories",
-                price: 1199,
-                rating: 4.8,
-                reviews: 82,
-                image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800",
-                description: "Matte black stainless steel adjustable rings for everyday layering."
-            },
-            {
-                id: 7,
-                name: "Subversive Tactical Balaclava Cap",
-                category: "caps",
-                price: 1299,
-                rating: 4.6,
-                reviews: 45,
-                image: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&q=80&w=800",
-                description: "Versatile streetwear cap and face covering engineered for nocturnal city moves."
-            },
-            {
-                id: 8,
-                name: "Minimalist Star Ink Sheet",
-                category: "tattoos",
-                price: 599,
-                rating: 4.9,
-                reviews: 140,
-                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
-                description: "Handwritten typography and star motif temporary tattoos."
-            }
-        ];
-
-        let cart = [];
-
-        window.addEventListener('DOMContentLoaded', () => {
-            renderProducts(products);
-            updateCartUI();
-        });
-
-        function renderProducts(itemsToRender) {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = '';
-
-            if (itemsToRender.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center font-mono text-gray-500">NO PRODUCTS FOUND IN THIS SECTOR.</div>`;
-                return;
-            }
-
-            itemsToRender.forEach(product => {
-                const card = document.createElement('div');
-                card.className = "bg-cyberCard border border-gray-800 hover:border-neonMagenta rounded-xl overflow-hidden transition-all duration-300 group flex flex-col justify-between";
-                card.innerHTML = `
-                    <div class="cursor-pointer" onclick="openModal(${product.id})">
-                        <div class="relative aspect-[4/5] bg-black overflow-hidden">
-                            <img src="${product.image}" alt="${product.name}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
-                                 onerror="this.src='https://placehold.co/800x1000/121318/ff007f?text=GAVI+DRIFTS'">
-                        </div>
-                        <div class="p-5 space-y-1">
-                            <span class="text-[10px] font-mono text-neonMagenta uppercase tracking-widest">${product.category}</span>
-                            <h3 class="font-bold text-sm uppercase tracking-wide text-white group-hover:text-neonMagenta transition-colors">${product.name}</h3>
-                            <div class="text-white font-mono font-bold text-base">₹${product.price.toLocaleString('en-IN')}</div>
-                        </div>
-                    </div>
-                    <div class="p-5 pt-0">
-                        <button onclick="addToCart(${product.id})" class="w-full py-3 bg-cyberDark hover:bg-neonMagenta hover:text-white border border-gray-800 hover:border-neonMagenta font-mono font-bold text-xs uppercase tracking-wider rounded-lg transition-all flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-cart-plus"></i>
-                            <span>ADD TO CART</span>
+        // Product Card Template
+        function renderProductCard(p) {
+            const isWishlisted = wishlist.some(item => item.id === p.id);
+            return `
+                <div class="group bg-cardBg border border-cardBorder rounded-xl overflow-hidden flex flex-col justify-between hover:border-neutral-700 transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden cursor-pointer" onclick="openProductModal(${p.id})">
+                        <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <button onclick="event.stopPropagation(); toggleWishlist(${p.id})" class="absolute top-3 right-3 bg-black/60 hover:bg-black p-2 rounded-full text-white transition-colors">
+                            <i class="${isWishlisted ? 'fa-solid text-white' : 'fa-regular'} fa-heart text-xs"></i>
                         </button>
                     </div>
-                `;
-                grid.appendChild(card);
-            });
+                    <div class="p-5 flex flex-col justify-between flex-1">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-neutral-500 font-mono">${p.category}</span>
+                            <h3 onclick="openProductModal(${p.id})" class="text-sm font-bold text-white uppercase tracking-wide mt-1 cursor-pointer hover:text-neutral-300">${p.name}</h3>
+                        </div>
+                        <div class="flex items-center justify-between mt-4 pt-4 border-t border-neutral-900">
+                            <span class="font-mono font-bold text-white text-sm">₹${p.price}</span>
+                            <button onclick="quickAddToCart(${p.id})" class="bg-white hover:bg-neutral-200 text-black text-xs font-bold uppercase tracking-wider px-4 py-2 rounded transition-colors">
+                                + Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
-        function filterProducts(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-category') === category) {
-                    btn.className = "filter-btn px-4 py-2 rounded-lg bg-white text-black font-bold transition-all";
-                } else {
-                    btn.className = "filter-btn px-4 py-2 rounded-lg bg-cyberCard border border-gray-800 text-gray-300 hover:border-neonMagenta transition-all";
-                }
-            });
-
-            if (category === 'all') {
-                renderProducts(products);
+        // Quick Add to Cart
+        function quickAddToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existingItem = cart.find(item => item.id === id && item.size === 'M');
+            if(existingItem) {
+                existingItem.qty += 1;
             } else {
-                const filtered = products.filter(p => p.category === category);
-                renderProducts(filtered);
+                cart.push({ ...product, size: 'M', qty: 1 });
             }
+            saveCart();
+            updateCartBadge();
+            toggleCartDrawer();
         }
 
-        function openModal(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            document.getElementById('modal-img').src = product.image;
-            document.getElementById('modal-category').textContent = product.category;
-            document.getElementById('modal-title').textContent = product.name;
-            document.getElementById('modal-price').textContent = `₹${product.price.toLocaleString('en-IN')}`;
-            document.getElementById('modal-desc').textContent = product.description;
-            document.getElementById('modal-add-btn').onclick = () => {
-                addToCart(product.id);
-                closeModal();
-            };
+        // Product Modal Logic
+        function openProductModal(id) {
+            currentModalProduct = products.find(p => p.id === id);
+            selectedSizeChoice = 'M';
+            document.getElementById('modal-img').src = currentModalProduct.img;
+            document.getElementById('modal-category').innerText = currentModalProduct.category;
+            document.getElementById('modal-name').innerText = currentModalProduct.name;
+            document.getElementById('modal-price').innerText = `₹${currentModalProduct.price}`;
+            document.getElementById('modal-desc').innerText = currentModalProduct.desc;
+            
+            // Show/Hide size selector depending on category
+            const sizeContainer = document.getElementById('size-selector-container');
+            if (currentModalProduct.category === 'clothes') {
+                sizeContainer.classList.remove('hidden');
+            } else {
+                sizeContainer.classList.add('hidden');
+            }
 
             document.getElementById('product-modal').classList.remove('hidden');
         }
 
-        function closeModal() {
+        function closeProductModal() {
             document.getElementById('product-modal').classList.add('hidden');
         }
 
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            updateCartUI();
-            showToast(`Added ${product.name} to cart.`);
-        }
-
-        function quickAdd(name, price, image) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id: Date.now(), name, price, image, quantity: 1 });
-            }
-            updateCartUI();
-            showToast(`Added ${name} to cart.`);
-        }
-
-        function updateCartUI() {
-            const badge = document.getElementById('cart-badge');
-            const drawerCount = document.getElementById('drawer-item-count');
-            const container = document.getElementById('cart-items-container');
-            const subtotalEl = document.getElementById('cart-subtotal');
-            const totalEl = document.getElementById('cart-total');
-
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-            badge.textContent = totalItems;
-            drawerCount.textContent = `${totalItems} items`;
-            subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
-            totalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
-
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="py-16 text-center space-y-3 font-mono text-gray-500">
-                        <i class="fa-solid fa-bag-shopping text-3xl text-gray-700"></i>
-                        <p>YOUR CART IS EMPTY.</p>
-                        <p class="text-xs">Wear what feels like you.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = '';
-            cart.forEach(item => {
-                const itemEl = document.createElement('div');
-                itemEl.className = "py-4 flex items-center space-x-4";
-                itemEl.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="w-16 h-20 object-cover rounded-lg bg-black border border-gray-800">
-                    <div class="flex-1 space-y-1">
-                        <h4 class="font-bold text-sm uppercase text-white">${item.name}</h4>
-                        <div class="text-neonMagenta font-mono text-xs font-bold">₹${item.price.toLocaleString('en-IN')}</div>
-                        <div class="flex items-center space-x-3 pt-1 font-mono text-xs">
-                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 rounded bg-cyberCard border border-gray-700 flex items-center justify-center hover:border-neonMagenta">-</button>
-                            <span>${item.quantity}</span>
-                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 rounded bg-cyberCard border border-gray-700 flex items-center justify-center hover:border-neonMagenta">+</button>
-                        </div>
-                    </div>
-                    <button onclick="removeItem(${item.id})" class="text-gray-500 hover:text-neonMagenta p-2">
-                        <i class="fa-solid fa-trash-can text-sm"></i>
-                    </button>
-                `;
-                container.appendChild(itemEl);
+        function selectSize(size) {
+            selectedSizeChoice = size;
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                if(btn.innerText === size) {
+                    btn.classList.add('border-white', 'bg-white', 'text-black');
+                    btn.classList.remove('text-neutral-300');
+                } else {
+                    btn.classList.remove('border-white', 'bg-white', 'text-black');
+                    btn.classList.add('text-neutral-300');
+                }
             });
         }
 
-        function updateQuantity(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (!item) return;
-            item.quantity += delta;
-            if (item.quantity <= 0) {
-                cart = cart.filter(i => i.id !== id);
+        function addCurrentProductToCart() {
+            if(!currentModalProduct) return;
+            const size = currentModalProduct.category === 'clothes' ? selectedSizeChoice : 'Standard';
+            const existing = cart.find(item => item.id === currentModalProduct.id && item.size === size);
+            if(existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...currentModalProduct, size, qty: 1 });
             }
-            updateCartUI();
+            saveCart();
+            updateCartBadge();
+            closeProductModal();
+            toggleCartDrawer();
         }
 
-        function removeItem(id) {
-            cart = cart.filter(i => i.id !== id);
-            updateCartUI();
-            showToast("Item removed from cart.");
-        }
-
-        function toggleCart() {
+        // Cart Drawer Operations
+        function toggleCartDrawer() {
             const drawer = document.getElementById('cart-drawer');
             drawer.classList.toggle('hidden');
+            renderCartItems();
         }
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('mobile-menu-icon');
-            menu.classList.toggle('hidden');
-            if (menu.classList.contains('hidden')) {
-                icon.className = "fa-solid fa-bars text-xl";
-            } else {
-                icon.className = "fa-solid fa-xmark text-xl";
-            }
-        }
-
-        function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                showToast("Your cart is empty!");
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            document.getElementById('drawer-item-count').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
+            
+            if(cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-neutral-500 text-xs uppercase tracking-widest">Your cart is empty.</div>`;
+                document.getElementById('cart-subtotal').innerText = '₹0';
                 return;
             }
 
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            let message = `★ *NEW ORDER // GAVI DRIFTS* ★\n\n`;
-            cart.forEach((item, index) => {
-                message += `${index + 1}. *${item.name}*\n   Qty: ${item.quantity} | Price: ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n\n`;
-            });
-            message += `----------------------------\n`;
-            message += `*TOTAL AMOUNT: ₹${subtotal.toLocaleString('en-IN')}*\n`;
-            message += `*SHIPPING:* FREE\n`;
-            message += `----------------------------\n`;
-            message += `Please confirm my order.`;
+            let subtotal = 0;
+            container.innerHTML = cart.map((item, index) => {
+                subtotal += item.price * item.qty;
+                return `
+                    py-4 flex items-center justify-between space-x-4">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-md bg-neutral-900">
+                        <div class="flex-1">
+                            <h4 class="text-xs font-bold text-white uppercase">${item.name}</h4>
+                            <p class="text-[10px] text-neutral-400 mt-0.5">Size: ${item.size} • ₹${item.price}</p>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <button onclick="updateQty(${index}, -1)" class="text-neutral-400 hover:text-white"><i class="fa-solid fa-minus text-[10px]"></i></button>
+                                <span class="text-xs font-mono font-bold text-white">${item.qty}</span>
+                                <button onclick="updateQty(${index}, 1)" class="text-neutral-400 hover:text-white"><i class="fa-solid fa-plus text-[10px]"></i></button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs font-mono font-bold text-white">₹${item.price * item.qty}</span>
+                            <button onclick="removeFromCart(${index})" class="block text-[10px] text-neutral-600 hover:text-red-400 mt-2">Remove</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappNumber = "919876543210"; 
-            const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            window.open(url, '_blank');
+            document.getElementById('cart-subtotal').innerText = `₹${subtotal}`;
         }
 
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const msgEl = document.getElementById('toast-message');
-            msgEl.textContent = message;
+        function updateQty(index, change) {
+            cart[index].qty += change;
+            if(cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            saveCart();
+            updateCartBadge();
+            renderCartItems();
+        }
 
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartBadge();
+            renderCartItems();
+        }
 
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 3000);
+        function saveCart() {
+            localStorage.setItem('gavi_cart', JSON.stringify(cart));
+        }
+
+        function updateCartBadge() {
+            const total = cart.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById('cart-count').innerText = total;
+        }
+
+        // WhatsApp Checkout Integration
+        function checkoutWhatsApp() {
+            if(cart.length === 0) {
+                alert('Your cart is empty.');
+                return;
+            }
+            let message = "Hello GAVI DRIFTS! I'd like to place an order:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                message += `• ${item.name} (${item.size}) x ${item.qty} - ₹${item.price * item.qty}\n`;
+                total += item.price * item.qty;
+            });
+            message += `\nTotal Subtotal: ₹${total}\nPlease confirm shipping & payment details!`;
+            
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/919876543210?text=${encoded}`, '_blank');
+        }
+
+        // Wishlist Logic
+        function toggleWishlist(id) {
+            const product = products.find(p => p.id === id);
+            const index = wishlist.findIndex(item => item.id === id);
+            if(index > -1) {
+                wishlist.splice(index, 1);
+            } else {
+                wishlist.push(product);
+            }
+            localStorage.setItem('gavi_wishlist', JSON.stringify(wishlist));
+            updateWishlistBadge();
+            if(currentPage === 'home') switchPage('home');
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlist-badge');
+            if(wishlist.length > 0) {
+                badge.innerText = wishlist.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function openWishlistModal() {
+            const container = document.getElementById('wishlist-items-container');
+            if(wishlist.length === 0) {
+                container.innerHTML = `<p class="text-neutral-500 text-xs text-center py-8">Your wishlist is empty.</p>`;
+            } else {
+                container.innerHTML = wishlist.map(item => `
+                    <div class="flex items-center justify-between py-3">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.img}" class="w-12 h-12 object-cover rounded">
+                            <div>
+                                <h4 class="text-xs font-bold text-white uppercase">${item.name}</h4>
+                                <span class="text-xs font-mono text-neutral-400">₹${item.price}</span>
+                            </div>
+                        </div>
+                        <button onclick="toggleWishlist(${item.id}); openWishlistModal();" class="text-xs text-neutral-500 hover:text-white">Remove</button>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('wishlist-modal').classList.remove('hidden');
+        }
+
+        function closeWishlistModal() {
+            document.getElementById('wishlist-modal').classList.add('hidden');
+        }
+
+        // Search Modal Logic
+        function openSearchModal() {
+            document.getElementById('search-modal').classList.remove('hidden');
+            document.getElementById('search-input').focus();
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.add('hidden');
+        }
+
+        function handleSearch(query) {
+            const resultsContainer = document.getElementById('search-results');
+            if(!query.trim()) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.category.toLowerCase().includes(query.toLowerCase()));
+            if(filtered.length === 0) {
+                resultsContainer.innerHTML = `<p class="text-xs text-neutral-500 py-4 text-center">No products found.</p>`;
+                return;
+            }
+            resultsContainer.innerHTML = filtered.map(p => `
+                <div onclick="closeSearchModal(); openProductModal(${p.id});" class="flex items-center justify-between p-3 bg-black hover:bg-neutral-800 rounded-lg cursor-pointer transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <img src="${p.img}" class="w-10 h-10 object-cover rounded">
+                        <div>
+                            <h4 class="text-xs font-bold text-white uppercase">${p.name}</h4>
+                            <span class="text-[10px] text-neutral-500 uppercase">${p.category}</span>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono font-bold text-white">₹${p.price}</span>
+                </div>
+            `).join('');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         }
     </script>
 </body>
